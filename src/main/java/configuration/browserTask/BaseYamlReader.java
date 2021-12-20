@@ -1,22 +1,21 @@
-package browser_task;
+package configuration.browserTask;
 
-import yaml.YamlReader;
-
-import java.util.List;
+import configuration.BrowserModel;
+import configuration.yaml.YamlReader;
 
 public class BaseYamlReader {
     private YamlReader yamlReader;
-//    List<BrowserModel> browsersList;
+    //    List<BrowserModel> browsersList;
     Browsers browsers;
 
 
-    public String setCurrentBrowser(){
+    public String setCurrentBrowser() {
         String url = null;
         url = getActiveObject().getUrl();
         return url;
     }
 
-    public BrowserModel getActiveObject(){
+    public BrowserModel getActiveObject() {
         BrowserModel be = null;
         yamlReader = new YamlReader();
 //        browsersList = yamlReader.getConfigModel().getBrowser().getListOfBrowsers();

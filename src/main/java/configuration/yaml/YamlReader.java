@@ -1,6 +1,6 @@
-package yaml;
+package configuration.yaml;
 
-import browser_task.ConfigModel;
+import configuration.ConfigModel;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 

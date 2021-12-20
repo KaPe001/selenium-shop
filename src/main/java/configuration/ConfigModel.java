@@ -1,4 +1,6 @@
-package browser_task;
+package configuration;
+
+import configuration.browserTask.Browser;
 
 public class ConfigModel {
     private Browser browser;

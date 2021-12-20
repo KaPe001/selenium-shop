@@ -1,7 +1,7 @@
 package TestBase;
 
-import browser_task.Browser;
-import browser_task.DriverFactory;
+import configuration.browserTask.Browser;
+import configuration.browserTask.DriverFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;

@@ -1,10 +1,8 @@
-package browser_task;
+package configuration.browserTask;
 
+import configuration.BrowserModel;
+import configuration.yaml.YamlReader;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import yaml.YamlReader;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public enum Browser {
 

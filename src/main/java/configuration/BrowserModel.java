@@ -1,5 +1,6 @@
-package browser_task;
+package configuration;
 
+import configuration.browserTask.Browser;
 import lombok.Data;
 
 import java.util.HashMap;
@@ -24,7 +25,7 @@ public class BrowserModel {
         return active;
     }
 
-    public Map<String, String> getProperties(){
+    public Map<String, String> getProperties() {
         Map<String, String> properties = new HashMap<>();
         properties.put("url", getUrl());
         return properties;

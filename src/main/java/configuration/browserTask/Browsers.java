@@ -1,4 +1,4 @@
-package browser_task;
+package configuration.browserTask;
 
 public class Browsers {
     Browser chrome;
