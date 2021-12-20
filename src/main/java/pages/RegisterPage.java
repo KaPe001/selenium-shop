@@ -3,18 +3,11 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
-import java.util.Random;
 
-import static java.lang.Thread.sleep;
+public class RegisterPage extends BasePage{
 
-public class RegisterPage {
-    public RegisterPage(WebDriver driver) {
-        PageFactory.initElements(driver, this);
-    }
-
-    @FindBy(css = ".custom-radio input")
+    @FindBy(className = "custom-radio")
     WebElement genderIdentificationBtn;
 
     @FindBy(name = "firstname")
@@ -29,54 +22,56 @@ public class RegisterPage {
     @FindBy(name = "password")
     WebElement passwordInput;
 
-    @FindBy(name = "optin")
+    @FindBy(className = "custom-checkbox")
     WebElement offersBtn;
 
-    @FindBy(name = "customer_privacy")
+    @FindBy(css = ".form-group:nth-child(8) .custom-checkbox")
     WebElement privacyBtn;
 
-    @FindBy(name = "newsletter")
+    @FindBy(css = ".form-group:nth-child(9) .custom-checkbox")
     WebElement newsletterBtn;
 
-    @FindBy(name = "psgdpr")
+    @FindBy(css = ".form-group:nth-child(10) .custom-checkbox")
     WebElement acceptBtn;
 
     @FindBy(className = "btn-primary")
     WebElement saveBtn;
 
-    public RegisterPage getUserGender() throws InterruptedException {
-        sleep(1500);
-        genderIdentificationBtn.click();
+    public RegisterPage(WebDriver driver) {
+        super(driver);
+    }
+
+    public RegisterPage getUserGender() {
+        clickOnElement(genderIdentificationBtn);
         return this;
     }
 
     public RegisterPage getUserFirstNameLastName(String firstName, String lastName) {
-        firstNameInput.sendKeys(firstName);
-        lastNameInput.sendKeys(lastName);
+        sendKeysToElement(firstNameInput, firstName);
+        sendKeysToElement(lastNameInput, lastName);
         return this;
     }
 
     public RegisterPage getEmail() {
-        Random rnd = new Random();
-        int randomInt = rnd.nextInt(1000);
-        emailInput.sendKeys("randomEmail" + randomInt + "@gmail.com");
+        String email = fakeValuesService.bothify("????##@gmail.com");
+        sendKeysToElement(emailInput, email);
         return this;
     }
 
     public RegisterPage getPassword(String password) {
-        passwordInput.sendKeys(password);
+        sendKeysToElement(passwordInput, password);
         return this;
     }
 
     public RegisterPage giveConsent() {
-        offersBtn.click();
-        privacyBtn.click();
-        newsletterBtn.click();
-        acceptBtn.click();
+        clickOnElement(offersBtn);
+        clickOnElement(privacyBtn);
+        clickOnElement(newsletterBtn);
+        clickOnElement(acceptBtn);
         return this;
     }
 
     public void saveUserRegistration() {
-        saveBtn.click();
+        clickOnElement(saveBtn);
     }
 }

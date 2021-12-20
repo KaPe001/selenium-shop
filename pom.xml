@@ -21,6 +21,8 @@
         <hamcrest.version>2.2</hamcrest.version>
         <logback.version>1.2.3</logback.version>
         <jUnitDataProvider.version>1.13.1</jUnitDataProvider.version>
+        <jackson-dataformat-yaml.version>2.13.0</jackson-dataformat-yaml.version>
+        <jackson-databind.version>2.13.0</jackson-databind.version>
     </properties>
 
     <dependencies>
@@ -82,6 +84,24 @@
             <artifactId>junit</artifactId>
             <version>${jUnit.version}</version>
             <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.javafaker</groupId>
+            <artifactId>javafaker</artifactId>
+            <version>0.15</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-yaml</artifactId>
+            <version>${jackson-dataformat-yaml.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson-databind.version}</version>
         </dependency>
     </dependencies>
 

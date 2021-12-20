@@ -1,16 +1,12 @@
 package pages;
 
 import org.junit.Assert;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
-public class LoginPage {
-
-    public LoginPage(WebDriver driver) {
-        PageFactory.initElements(driver, this);
-    }
+public class LoginPage extends BasePage{
 
     @FindBy(name = "email")
     WebElement emailInput;
@@ -18,7 +14,7 @@ public class LoginPage {
     @FindBy(name = "password")
     WebElement passwordInput;
 
-    @FindBy(id = "submit-login")
+    @FindBy(className = "btn-primary")
     WebElement submitBtn;
 
     @FindBy(css = ".user-info span")
@@ -30,22 +26,45 @@ public class LoginPage {
     @FindBy(css = ".no-account a")
     WebElement createNewAccountBtn;
 
-    public LoginPage logUserIn(String email, String password) {
-        emailInput.sendKeys(email);
-        passwordInput.sendKeys(password);
-        submitBtn.click();
+    public LoginPage(WebDriver driver) {
+        super(driver);
+    }
+
+    public LoginPage logUserIn(String email, String password) {//no parameters
+        sendKeysToElement(emailInput, email); //"email" and "password" below by System.getProperty("") from yaml file
+        sendKeysToElement(passwordInput, password);
+//        loginAction(emailBox, passwordBox, myUser);
         return this;
     }
 
-    public void userExistsVerify(String nameAndLastName) {
-        System.out.println(userNameDisplayed.getText());
-        Assert.assertEquals(nameAndLastName, userNameDisplayed.getText());
+    public LoginPage submitUser(){
+        clickOnElement(submitBtn);
+        return this;
     }
 
-    public void whenUserDoesntExistGetAlert() {
+//    public LoginPage loginAction(WebElement emailBox, WebElement passwordBox, User user){
+//        sendKeysToElement(emailBox, user.getEmail());
+//        sendKeysToElement(passwordBox, user.getPassword());
+//    }
+
+//    public String getAccountName(){
+//
+//    }
+    public String getAccountName() {
+        waitUntil(userNameDisplayed);
+        try {
+            System.out.println(userNameDisplayed.getText()); //get text w try
+        } catch (NoSuchElementException e){
+            System.out.println(e.getMessage());
+        }
+        return userNameDisplayed.getText();
+    }
+
+    public void getAlert() {
+        waitUntil(validateText);
         if (validateText.isDisplayed()) {
             System.out.println(validateText.getText() + " Going to user registration.");
-            if (!validateText.getText().equals("Login success")) {
+            if (!validateText.getText().equals(" ")) {
                 createNewAccountBtn.click();
             }
         } else {

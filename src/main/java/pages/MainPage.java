@@ -1,17 +1,10 @@
 package pages;
 
-import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
-import static java.lang.Thread.sleep;
-
-public class MainPage {
-    public MainPage(WebDriver driver) {
-        PageFactory.initElements(driver, this);
-    }
+public class MainPage extends BasePage{
 
     @FindBy(css = "[id='header'] [id='_desktop_user_info'] .hidden-sm-down")
     WebElement logInBtn;
@@ -19,24 +12,27 @@ public class MainPage {
     @FindBy(css = ".user-info span")
     WebElement userNameDisplayed;
 
-    @FindBy(className = "logout")
+    @FindBy(css = ".user-info .logout")
     WebElement logOutBtn;
 
+    public MainPage(WebDriver driver) {
+        super(driver);
+    }
+
     public void goToLoginPage() {
-        logInBtn.click();
+        clickOnElement(logInBtn);
     }
 
-    public MainPage verifyLoggedUserInfo() {
+    public String verifyLoggedUserInfo() {
         System.out.println(userNameDisplayed.getText());
-        Assert.assertEquals("Jan Kowalski", userNameDisplayed.getText());
-        return this;
+        return userNameDisplayed.getText();
     }
 
-    public void logUserOut() throws InterruptedException {
-        sleep(1500);
-        logOutBtn.click();
+    public void logUserOut() {
+        clickOnElementToSignUserOut(logOutBtn);
         if (userNameDisplayed.getText().equals("Sign in")) {
             System.out.println("User signed out properly");
         }
     }
+
 }
