@@ -1,4 +1,4 @@
-package models;
+package configuration.models;
 
 public class User {
     public String firstName;
@@ -24,7 +24,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "models.UserBuilder{" +
+        return "configuration.models.UserBuilder{" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", emailAddress='" + emailAddress + '\'' +

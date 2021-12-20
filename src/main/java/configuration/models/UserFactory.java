@@ -1,4 +1,4 @@
-package models;
+package configuration.models;
 
 import com.github.javafaker.Faker;
 import com.github.javafaker.service.FakeValuesService;
@@ -6,7 +6,7 @@ import com.github.javafaker.service.RandomService;
 
 import java.util.Locale;
 
-public class UserFactory{
+public class UserFactory {
 
     public User getRandomUser() {
         Faker faker = new Faker();
@@ -25,10 +25,10 @@ public class UserFactory{
     public User getAlreadyRegisteredUser() {
 
         User user = new UserBuilder()
-                .firstName("lala")
-                .lastName("jakas")
-                .emailAddress("jakis@gm.com")
-                .password("dsald")
+                .firstName("Jan")
+                .lastName("Kowalski")
+                .emailAddress("jakis@mail.com")
+                .password("dsald22")
                 .build();
         return user;
     }
