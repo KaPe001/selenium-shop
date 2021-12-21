@@ -11,22 +11,22 @@ public class WebListener extends AbstractWebDriverEventListener {
     Logger logger = LoggerFactory.getLogger(WebListener.class);
 
     @Override
-    public void afterClickOn(WebElement element, WebDriver driver){
+    public void afterClickOn(WebElement element, WebDriver driver) {
         logger.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>EventListenerAfterClick");
     }
 
     @Override
-    public void beforeClickOn(WebElement element, WebDriver driver){
+    public void beforeClickOn(WebElement element, WebDriver driver) {
         logger.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>EventListenerBeforeClick");
     }
 
     @Override
-    public void afterNavigateTo(String url, WebDriver driver){
+    public void afterNavigateTo(String url, WebDriver driver) {
         logger.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>EventListenerAfterNavigateTo");
     }
 
     @Override
-    public void beforeNavigateTo(String url, WebDriver driver){
+    public void beforeNavigateTo(String url, WebDriver driver) {
         logger.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>EventListenerBeforeNavigateTo");
     }
 }

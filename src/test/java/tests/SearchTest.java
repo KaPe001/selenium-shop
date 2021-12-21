@@ -11,7 +11,7 @@ import static org.hamcrest.core.IsEqual.equalTo;
 public class SearchTest extends TestBase {
 
     @Test
-    public void searchForProduct(){
+    public void searchForProduct() {
         MainPage mainPage = new MainPage(webDriver);
 
         mainPage.searchProduct()
@@ -23,7 +23,7 @@ public class SearchTest extends TestBase {
     }
 
     @Test
-    public void searchResultInDropdown(){
+    public void searchResultInDropdown() {
         MainPage mainPage = new MainPage(webDriver);
 
         mainPage.searchProduct()

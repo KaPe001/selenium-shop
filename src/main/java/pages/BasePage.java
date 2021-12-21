@@ -1,6 +1,5 @@
 package pages;
 
-import com.github.javafaker.Faker;
 import com.github.javafaker.service.FakeValuesService;
 import com.github.javafaker.service.RandomService;
 import org.openqa.selenium.WebDriver;
@@ -24,7 +23,7 @@ public class BasePage {
             new Locale("en-GB"), new RandomService());
     private Logger logger = LoggerFactory.getLogger(BasePage.class);
 
-    public BasePage(){
+    public BasePage() {
     }
 
     public BasePage(WebDriver driver) {
@@ -33,29 +32,29 @@ public class BasePage {
         wait = new WebDriverWait(driver, Duration.ofSeconds(15));
     }
 
-    public void clickOnElement (WebElement element){
+    public void clickOnElement(WebElement element) {
         wait.until(ExpectedConditions.elementToBeClickable(element));
         element.click();
         //logger.info("Element {} clicked", element.getText());
     }
 
-    public void clickOnElementToSignUserOut(WebElement element){
+    public void clickOnElementToSignUserOut(WebElement element) {
         wait.until(ExpectedConditions.visibilityOf(element));
         element.click();
     }
 
-    public void sendKeysToElement(WebElement element, String text){
+    public void sendKeysToElement(WebElement element, String text) {
         wait.until(ExpectedConditions.visibilityOf(element));
         element.clear();
         element.sendKeys(text);
         logger.info("Send keys performed on element {}, message: {}", element.getAttribute("name"), text);
     }
 
-    public void waitUntil(WebElement webElement){
+    public void waitUntil(WebElement webElement) {
         wait.until(ExpectedConditions.visibilityOf(webElement));
     }
 
-    public void printOutElement(WebElement element){
+    public void printOutElement(WebElement element) {
         wait.until(ExpectedConditions.visibilityOf(element));
         System.out.println(element);
     }

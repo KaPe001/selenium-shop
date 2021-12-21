@@ -1,13 +1,12 @@
 package pages;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.DefaultElementLocatorFactory;
 
-public class SingleCategoryOnMainPage extends BasePage{
-    public SingleCategoryOnMainPage(WebElement singleCategory){
+public class SingleCategoryOnMainPage extends BasePage {
+    public SingleCategoryOnMainPage(WebElement singleCategory) {
         PageFactory.initElements(new DefaultElementLocatorFactory(singleCategory), this);
     }
 
@@ -20,20 +19,20 @@ public class SingleCategoryOnMainPage extends BasePage{
     @FindBy(css = "#top-menu > .category:nth-child(3) > .dropdown-item")
     WebElement artCategory;
 
-    public SingleCategoryOnMainPage getCategory(){
+    public SingleCategoryOnMainPage getCategory() {
         clickOnElement(clothesCategory);
         return this;
     }
 
-    public String getFirstCategoryName(){
+    public String getFirstCategoryName() {
         return clothesCategory.getText();
     }
 
-    public String getSecondCategoryName(){
+    public String getSecondCategoryName() {
         return accessoriesCategory.getText();
     }
 
-    public String getThirdCategoryName(){
+    public String getThirdCategoryName() {
         return artCategory.getText();
     }
 }

@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 public class TestForUser {
 
     @Test
-    public void getUserInfo(){
+    public void getUserInfo() {
 
         UserFactory userFactory = new UserFactory();
 

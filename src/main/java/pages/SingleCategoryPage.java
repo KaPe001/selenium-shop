@@ -6,14 +6,14 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.DefaultElementLocatorFactory;
 
 public class SingleCategoryPage {
-    public SingleCategoryPage(WebElement oneCategory){
+    public SingleCategoryPage(WebElement oneCategory) {
         PageFactory.initElements(new DefaultElementLocatorFactory(oneCategory), this);
     }
 
     @FindBy(css = ".top-menu .category")
     WebElement singleProductFromGrid;
 
-    public String getProductName(){
+    public String getProductName() {
         return singleProductFromGrid.getText();
     }
 }

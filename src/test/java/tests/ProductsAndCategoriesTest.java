@@ -13,7 +13,7 @@ public class ProductsAndCategoriesTest extends TestBase {
     }
 
     @Test
-    public void iterateThroughSubCategories(){
+    public void iterateThroughSubCategories() {
         new MainPage(webDriver)
                 .iterateThroughSubCategories();
     }

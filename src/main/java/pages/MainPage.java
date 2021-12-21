@@ -176,7 +176,7 @@ public class MainPage extends BasePage {
             System.out.println(createNewCategoryList().size());
             mouseHoverOnElementFromList(categoriesList.get(i));
 
-            for(int j = 0; j < createNewSubCategoryList().size() - 2; j++){
+            for (int j = 0; j < createNewSubCategoryList().size() - 2; j++) {
                 System.out.println(createNewSubCategoryList().size());
                 clickOnElement(subCategoriesList.get(j));
                 waitUntil(categoryPage.categoryName);

@@ -35,7 +35,7 @@ public class CategoryPage extends BasePage {
         ProductGridPage productGridPage = new ProductGridPage(driver);
         waitUntil(amountLabel);
 
-        if(productGridPage.createListOfProducts().size() == 1){
+        if (productGridPage.createListOfProducts().size() == 1) {
             return "There is 1 product.";
         }
         return amountLabel.getText();
