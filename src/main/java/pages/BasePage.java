@@ -34,9 +34,9 @@ public class BasePage {
     }
 
     public void clickOnElement (WebElement element){
-        wait.until(ExpectedConditions.visibilityOf(element));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
         element.click();
-        logger.info("Element {} clicked", element.getText());
+        //logger.info("Element {} clicked", element.getText());
     }
 
     public void clickOnElementToSignUserOut(WebElement element){
@@ -53,5 +53,10 @@ public class BasePage {
 
     public void waitUntil(WebElement webElement){
         wait.until(ExpectedConditions.visibilityOf(webElement));
+    }
+
+    public void printOutElement(WebElement element){
+        wait.until(ExpectedConditions.visibilityOf(element));
+        System.out.println(element);
     }
 }

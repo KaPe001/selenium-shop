@@ -16,32 +16,32 @@ public class shopLogUserTest extends TestBase {
     @DisplayName("log in existing user")
     @Test
     public void logInExistingUser() {
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage(webDriver);
 
-        new MainPage(driver)
+        new MainPage(webDriver)
                 .goToLoginPage();
 
-        new LoginPage(driver)
+        new LoginPage(webDriver)
                 .logUserIn("barbararriddick@jourrapide.com", "12345678")
                 .submitUser();
         Assertions.assertEquals(loginPage.getAccountName(), "Barbara Riddick");
 
-        new MainPage(driver).logUserOut();
+        new MainPage(webDriver).logUserOut();
     }
 
     @Order(2)
     @DisplayName("log in non-existing user")
     @Test
     public void logInNonExistingUser() {
-        MainPage mainPage = new MainPage(driver);
+        MainPage mainPage = new MainPage(webDriver);
 
-        new MainPage(driver).goToLoginPage();
+        new MainPage(webDriver).goToLoginPage();
 
-        new LoginPage(driver).logUserIn("randomEmail@email.com", "randomPassword")
+        new LoginPage(webDriver).logUserIn("randomEmail@email.com", "randomPassword")
                 .submitUser()
                 .getAlert();
 
-        new RegisterPage(driver)
+        new RegisterPage(webDriver)
                 .getUserGender()
                 .getUserFirstNameLastName("Jan", "Kowalski")
                 .getEmail()
@@ -51,7 +51,7 @@ public class shopLogUserTest extends TestBase {
 
         Assertions.assertEquals("Jan Kowalski", mainPage.verifyLoggedUserInfo());
 
-        new MainPage(driver)
+        new MainPage(webDriver)
                 .logUserOut();
     }
 }
