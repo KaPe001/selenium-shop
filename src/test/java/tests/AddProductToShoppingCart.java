@@ -2,7 +2,6 @@ package tests;
 
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import pages.MainPage;
 import pages.ProductGridPage;
 import pages.ProductPage;

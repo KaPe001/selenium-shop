@@ -9,7 +9,6 @@ public class PricesDrop extends TestBase {
     @Test
     public void checkPricesDrop(){
         ProductGridPage productGridPage = new ProductGridPage(webDriver);
-        ProductPage productPage = new ProductPage(webDriver);
 
         new MainPage(webDriver)
                 .clickOnBanner();

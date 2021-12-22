@@ -10,7 +10,6 @@ public class FiltersTest extends TestBase {
 
     @Test
     public void checkFilters() {
-        CategoryPage categoryPage = new CategoryPage(webDriver);
         ProductGridPage productGridPage = new ProductGridPage(webDriver);
 
         int gridSize = productGridPage.createListOfProducts().size();
@@ -23,8 +22,5 @@ public class FiltersTest extends TestBase {
         new CategoryPage(webDriver)
                 .useFilter()
                 .getAmountOfProducts();
-
-        //Assert.assertEquals(categoryPage.getAmountOfProducts(), equalTo(gridSize));
-
     }
 }
