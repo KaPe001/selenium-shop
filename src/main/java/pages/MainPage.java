@@ -60,6 +60,9 @@ public class MainPage extends BasePage {
     @FindBy(css = "#footer #link-product-page-prices-drop-1")
     WebElement bannerPriceOff;
 
+    @FindBy(css = "#_desktop_cart a")
+    WebElement basketBtn;
+
     public MainPage mouseHoverOnElementFromList(WebElement element) {
         logger.info("Mouse hover on an element link from a list ");
         mouseHover(element);
@@ -196,6 +199,11 @@ public class MainPage extends BasePage {
 
     public MainPage goToRandomCategory() {
         productGridPage.getRandomWebElementFromList(categoriesList).click();
+        return this;
+    }
+
+    public MainPage goToBasket(){
+        clickOnElement(basketBtn);
         return this;
     }
 }
