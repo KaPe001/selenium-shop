@@ -36,7 +36,6 @@ public class ProductGridPage extends BasePage {
     public ProductGridPage checkIfRegularPriceIsDisplayed() {
         for (SingleProductGridPage singleProduct : createListOfProducts()) {
             if (!singleProduct.regularPrice.isDisplayed()) {
-//                System.out.println("Something went wrong, regular price is not displayed!");
                 logMessage("Something went wrong, regular price is not displayed!");
             }
         }
@@ -47,7 +46,6 @@ public class ProductGridPage extends BasePage {
     public ProductGridPage checkIfPriceAfterDiscountPriceIsDisplayed() {
         for (SingleProductGridPage singleProduct : createListOfProducts()) {
             if (!singleProduct.priceAfterDiscount.isDisplayed()) {
-//                System.out.println("Something went wrong, regular price is not displayed!");
                 logMessage("Something went wrong, regular price is not displayed!");
             }
         }

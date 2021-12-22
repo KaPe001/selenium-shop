@@ -33,7 +33,6 @@ public class ProductPage extends BasePage {
 
     public ProductPage checkIfRegularPriceIsDisplayed(){
         if(!regularPrice.isDisplayed()){
-//            System.out.println("Something went wrong, price isn't displayed");
             logMessage("Something went wrong, price isn't displayed");
         }
         return this;
@@ -41,7 +40,6 @@ public class ProductPage extends BasePage {
 
     public ProductPage checkIfPriceAfterDiscountIsDisplayed(){
         if(!priceAfterDiscount.isDisplayed()){
-//            System.out.println("Something went wrong, price isn't displayed");
             logMessage("Something went wrong, price isn't displayed");
         }
         return this;
@@ -50,8 +48,6 @@ public class ProductPage extends BasePage {
     public ProductPage calculateDiscount() {
         ProductGridPage productGridPage = new ProductGridPage(webDriver);
         productGridPage.calculateIfDiscountIsCorrect(regularPrice.getText(), priceAfterDiscount.getText());
-//        System.out.println("Regular price on ProductPage is: 44.16, price after discount is: " + priceAfterDiscount.getText()
-//                + " which is - 20% on a regular price");
         logMessage("Regular price on ProductPage is: 44.16, price after discount is: " + priceAfterDiscount.getText()
                 + " which is - 20% on a regular price");
         return this;

@@ -111,10 +111,8 @@ public class MainPage extends BasePage {
     public MainPage checkForResultInResultDropDownList() {
         for (int i = 1; i <= resultList.size(); i++) {
             if (result.equals(productGridPage.randomResult)) {
-//                System.out.println("Products match");
                 logMessage("Products match");
             } else {
-//                System.out.println("Something went wrong");
                 logMessage("Something went wrong");
             }
         }
