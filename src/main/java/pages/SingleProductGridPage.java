@@ -26,6 +26,11 @@ public class SingleProductGridPage extends BasePage {
         return singleProductFromGrid.getText();
     }
 
+    public SingleProductGridPage goToProduct(){
+        clickOnElement(singleProductFromGrid);
+        return this;
+    }
+
     public void clickOnProduct(){
         clickOnElement(singleProductFromGrid);
     }

@@ -10,7 +10,7 @@ public class SingleCategoryOnMainPage extends BasePage {
         PageFactory.initElements(new DefaultElementLocatorFactory(singleCategory), this);
     }
 
-    @FindBy(css = "#top-menu > .category > .dropdown-item")
+    @FindBy(className = "dropdown-item")
     WebElement clothesCategory;
 
     @FindBy(css = "#top-menu > .category:nth-child(2) > .dropdown-item")
@@ -19,10 +19,11 @@ public class SingleCategoryOnMainPage extends BasePage {
     @FindBy(css = "#top-menu > .category:nth-child(3) > .dropdown-item")
     WebElement artCategory;
 
-    public SingleCategoryOnMainPage getClothesCategory() {
-        clickOnElement(clothesCategory);
+    public SingleCategoryOnMainPage goToCategory() {
+        clickOnElement(accessoriesCategory);
         return this;
     }
+
     public SingleCategoryOnMainPage getCategory(WebElement element) {
         clickOnElement(element);
         return this;

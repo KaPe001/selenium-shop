@@ -25,12 +25,19 @@ public class ProductGridPage extends BasePage {
         return newList;
     }
 
-    public String getRandomProduct() {
-        for (SingleProductGridPage singleProduct : createListOfProducts()) {
-            int randomProduct = rnd.nextInt(createListOfProducts().size());
-            randomResult = createListOfProducts().get(randomProduct).getProductName();
-        }
+    public WebElement getRandomWebElementFromList(List<WebElement> list) {
+        int randomNumber = rnd.nextInt(list.size());
+        return list.get(randomNumber);
+    }
+
+    public String getRandomProductName() {
+        getRandomWebElementFromList(productList).getText();
         return randomResult;
+    }
+
+    public ProductGridPage goToRandomProduct() {
+        getRandomWebElementFromList(productList).click();
+        return this;
     }
 
     public ProductGridPage checkIfRegularPriceIsDisplayed() {
@@ -83,7 +90,7 @@ public class ProductGridPage extends BasePage {
 
             double regularPrice = Double.parseDouble(regularPriceString);
             double actualPrice = regularPrice * 0.80d;
-            System.out.println("Actual price is: " + String.format("%.2f", actualPrice) +
+            logMessage("Actual price is: " + String.format("%.2f", actualPrice) +
                     " The product price on a website is: " + singleProductGridPage.getPriceAfterDiscount());
     }
         return this;

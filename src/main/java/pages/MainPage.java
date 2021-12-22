@@ -95,7 +95,7 @@ public class MainPage extends BasePage {
 
     public MainPage searchProduct() {
         clickOnElement(searchBox);
-        sendKeysToElement(searchBox, productGridPage.getRandomProduct());
+        sendKeysToElement(searchBox, productGridPage.getRandomProductName());
         return this;
     }
 
@@ -172,9 +172,9 @@ public class MainPage extends BasePage {
                 Assert.assertEquals(categoryPage.printHowManyProducts(), (getActualProductGridSize(productGridPage.createListOfProducts().size())));
                 mouseHoverOnElementFromList(categoriesList.get(i));
             }
-    }
+        }
         return this;
-}
+    }
 
     public String getActualProductGridSize(int size) {
         ProductGridPage productGridPage = new ProductGridPage(webDriver);
@@ -184,13 +184,18 @@ public class MainPage extends BasePage {
         return "There are " + size + " products.";
     }
 
-    public MainPage goToArtCategory(){
+    public MainPage goToArtCategory() {
         clickOnElement(art);
         return this;
     }
 
-    public MainPage clickOnBanner(){
+    public MainPage clickOnBanner() {
         clickOnElement(bannerPriceOff);
+        return this;
+    }
+
+    public MainPage goToRandomCategory() {
+        productGridPage.getRandomWebElementFromList(categoriesList).click();
         return this;
     }
 }
