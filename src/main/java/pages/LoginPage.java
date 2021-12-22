@@ -25,14 +25,13 @@ public class LoginPage extends BasePage{
     @FindBy(css = ".no-account a")
     WebElement createNewAccountBtn;
 
-    public LoginPage(WebDriver driver) {
-        super(driver);
+    public LoginPage(WebDriver webDriver) {
+        super(webDriver);
     }
 
     public LoginPage logUserIn(String email, String password) {//no parameters
         sendKeysToElement(emailInput, email); //"email" and "password" below by System.getProperty("") from yaml file
         sendKeysToElement(passwordInput, password);
-//        loginAction(emailBox, passwordBox, myUser);
         return this;
     }
 
@@ -41,18 +40,10 @@ public class LoginPage extends BasePage{
         return this;
     }
 
-//    public LoginPage loginAction(WebElement emailBox, WebElement passwordBox, User user){
-//        sendKeysToElement(emailBox, user.getEmail());
-//        sendKeysToElement(passwordBox, user.getPassword());
-//    }
-
-//    public String getAccountName(){
-//
-//    }
     public String getAccountName() {
         waitUntil(userNameDisplayed);
         try {
-            System.out.println(userNameDisplayed.getText()); //get text w try
+            System.out.println(userNameDisplayed.getText());
         } catch (NoSuchElementException e){
             System.out.println(e.getMessage());
         }

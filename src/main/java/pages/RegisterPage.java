@@ -37,8 +37,8 @@ public class RegisterPage extends BasePage {
     @FindBy(className = "btn-primary")
     WebElement saveBtn;
 
-    public RegisterPage(WebDriver driver) {
-        super(driver);
+    public RegisterPage(WebDriver webDriver) {
+        super(webDriver);
     }
 
     public RegisterPage getUserGender() {

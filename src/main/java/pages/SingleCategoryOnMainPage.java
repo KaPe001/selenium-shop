@@ -19,8 +19,12 @@ public class SingleCategoryOnMainPage extends BasePage {
     @FindBy(css = "#top-menu > .category:nth-child(3) > .dropdown-item")
     WebElement artCategory;
 
-    public SingleCategoryOnMainPage getCategory() {
+    public SingleCategoryOnMainPage getClothesCategory() {
         clickOnElement(clothesCategory);
+        return this;
+    }
+    public SingleCategoryOnMainPage getCategory(WebElement element) {
+        clickOnElement(element);
         return this;
     }
 

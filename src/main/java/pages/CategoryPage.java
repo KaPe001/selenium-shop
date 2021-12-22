@@ -15,8 +15,14 @@ public class CategoryPage extends BasePage {
     @FindBy(css = "#products .total-products p")
     WebElement amountLabel;
 
-    public CategoryPage(WebDriver driver) {
-        super(driver);
+    @FindBy(css = "#search_filters .facet .search-link")
+    WebElement filerDimension;
+
+    @FindBy(css = "#search_filters .facet .search-link .magnitude")
+    WebElement amountOfProductsInFilterLabel;
+
+    public CategoryPage(WebDriver webDriver) {
+        super(webDriver);
     }
 
     public String getCategoryName() {
@@ -32,12 +38,21 @@ public class CategoryPage extends BasePage {
     }
 
     public String printHowManyProducts() {
-        ProductGridPage productGridPage = new ProductGridPage(driver);
+        ProductGridPage productGridPage = new ProductGridPage(webDriver);
         waitUntil(amountLabel);
 
         if (productGridPage.createListOfProducts().size() == 1) {
             return "There is 1 product.";
         }
         return amountLabel.getText();
+    }
+
+    public CategoryPage useFilter(){
+        clickOnElement(filerDimension);
+        return this;
+    }
+
+    public String getAmountOfProducts(){
+        return amountOfProductsInFilterLabel.getText();
     }
 }

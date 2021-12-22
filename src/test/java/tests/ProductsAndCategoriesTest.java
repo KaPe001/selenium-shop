@@ -1,6 +1,6 @@
 package tests;
 
-import TestBase.TestBase;
+import testBase.TestBase;
 import org.junit.jupiter.api.Test;
 import pages.MainPage;
 

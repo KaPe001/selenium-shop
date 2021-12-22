@@ -18,7 +18,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsEqual.equalTo;
 
 public class MainPage extends BasePage {
-    ProductGridPage productGridPage = new ProductGridPage(driver);
+    ProductGridPage productGridPage = new ProductGridPage(webDriver);
     Logger logger = LoggerFactory.getLogger(MainPage.class);
 
     private EventFiringMouse eventFiringMouse;
@@ -57,39 +57,24 @@ public class MainPage extends BasePage {
     @FindBy(css = "#category-9 > a")
     WebElement art;
 
+    @FindBy(css = "#footer #link-product-page-prices-drop-1")
+    WebElement bannerPriceOff;
+
     public MainPage mouseHoverOnElementFromList(WebElement element) {
         logger.info("Mouse hover on an element link from a list ");
         mouseHover(element);
         return this;
     }
 
-    public MainPage mouseHoverClothes() {
-        logger.info("Mouse hover on clothes link");
-        mouseHover(clothes);
-        return this;
-    }
-
-    public MainPage mouseHoverAccessories() {
-        logger.info("Mouse hover on accessories link");
-        mouseHover(accessories);
-        return this;
-    }
-
-    public MainPage mouseHoverArt() {
-        logger.info("Mouse hover on art link");
-        mouseHover(art);
-        return this;
-    }
-
     private void mouseHover(WebElement webElement) {
-        eventFiringMouse = new EventFiringMouse(driver, webListener);
+        eventFiringMouse = new EventFiringMouse(webDriver, webListener);
         Locatable item = (Locatable) webElement;
         Coordinates coordinates = item.getCoordinates();
         eventFiringMouse.mouseMove(coordinates);
     }
 
-    public MainPage(WebDriver driver) {
-        super(driver);
+    public MainPage(WebDriver webDriver) {
+        super(webDriver);
     }
 
     public void goToLoginPage() {
@@ -104,7 +89,7 @@ public class MainPage extends BasePage {
     public void logUserOut() {
         clickOnElementToSignUserOut(logOutBtn);
         if (userNameDisplayed.getText().equals("Sign in")) {
-            System.out.println("User signed out properly");
+            logMessage("User signed out properly");
         }
     }
 
@@ -126,9 +111,11 @@ public class MainPage extends BasePage {
     public MainPage checkForResultInResultDropDownList() {
         for (int i = 1; i <= resultList.size(); i++) {
             if (result.equals(productGridPage.randomResult)) {
-                System.out.println("Products match");
+//                System.out.println("Products match");
+                logMessage("Products match");
             } else {
-                System.out.println("Something went wrong");
+//                System.out.println("Something went wrong");
+                logMessage("Something went wrong");
             }
         }
         return this;
@@ -151,13 +138,13 @@ public class MainPage extends BasePage {
     }
 
     public MainPage iterateThroughAllCategories() {
-        CategoryPage categoryPage = new CategoryPage(driver);
+        CategoryPage categoryPage = new CategoryPage(webDriver);
 
         for (int i = 0; i < createNewCategoryList().size(); i++) {
             clickOnElement(categoriesList.get(i));
 
             waitUntil(categoryPage.categoryName);
-            assertThat(categoryPage.getCategoryName(), equalTo(driver.findElement(By.cssSelector("#js-product-list-header h1")).getText()));
+            assertThat(categoryPage.getCategoryName(), equalTo(webDriver.findElement(By.cssSelector("#js-product-list-header h1")).getText()));
             logger.info("Category name matches with clicked category");
 
             categoryPage.checkIfFilterMenuIsDisplayed();
@@ -170,17 +157,15 @@ public class MainPage extends BasePage {
     }
 
     public MainPage iterateThroughSubCategories() {
-        CategoryPage categoryPage = new CategoryPage(driver);
+        CategoryPage categoryPage = new CategoryPage(webDriver);
 
         for (int i = 0; i < createNewCategoryList().size(); i++) {
-            System.out.println(createNewCategoryList().size());
             mouseHoverOnElementFromList(categoriesList.get(i));
 
             for (int j = 0; j < createNewSubCategoryList().size() - 2; j++) {
-                System.out.println(createNewSubCategoryList().size());
                 clickOnElement(subCategoriesList.get(j));
                 waitUntil(categoryPage.categoryName);
-                assertThat(categoryPage.getCategoryName(), equalTo(driver.findElement(By.cssSelector("#js-product-list-header h1")).getText()));
+                assertThat(categoryPage.getCategoryName(), equalTo(webDriver.findElement(By.cssSelector("#js-product-list-header h1")).getText()));
                 logger.info("Category name matches with clicked category");
 
                 categoryPage.checkIfFilterMenuIsDisplayed();
@@ -189,15 +174,25 @@ public class MainPage extends BasePage {
                 Assert.assertEquals(categoryPage.printHowManyProducts(), (getActualProductGridSize(productGridPage.createListOfProducts().size())));
                 mouseHoverOnElementFromList(categoriesList.get(i));
             }
-        }
-        return this;
     }
+        return this;
+}
 
     public String getActualProductGridSize(int size) {
-        ProductGridPage productGridPage = new ProductGridPage(driver);
+        ProductGridPage productGridPage = new ProductGridPage(webDriver);
         if (productGridPage.createListOfProducts().size() == 1) {
             return "There is 1 product.";
         }
         return "There are " + size + " products.";
+    }
+
+    public MainPage goToArtCategory(){
+        clickOnElement(art);
+        return this;
+    }
+
+    public MainPage clickOnBanner(){
+        clickOnElement(bannerPriceOff);
+        return this;
     }
 }

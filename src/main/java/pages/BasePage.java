@@ -16,7 +16,7 @@ import java.util.Random;
 
 public class BasePage {
 
-    public WebDriver driver;
+    public WebDriver webDriver;
     public WebDriverWait wait;
     Random rnd = new Random();
     FakeValuesService fakeValuesService = new FakeValuesService(
@@ -26,10 +26,10 @@ public class BasePage {
     public BasePage() {
     }
 
-    public BasePage(WebDriver driver) {
-        PageFactory.initElements(driver, this);
-        this.driver = driver;
-        wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+    public BasePage(WebDriver webDriver) {
+        PageFactory.initElements(webDriver, this);
+        this.webDriver = webDriver;
+        wait = new WebDriverWait(webDriver, Duration.ofSeconds(15));
     }
 
     public void clickOnElement(WebElement element) {
@@ -54,8 +54,7 @@ public class BasePage {
         wait.until(ExpectedConditions.visibilityOf(webElement));
     }
 
-    public void printOutElement(WebElement element) {
-        wait.until(ExpectedConditions.visibilityOf(element));
-        System.out.println(element);
+    public void logMessage(String text) {
+        logger.info(text);
     }
 }
