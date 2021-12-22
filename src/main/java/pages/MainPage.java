@@ -85,7 +85,6 @@ public class MainPage extends BasePage {
     }
 
     public String verifyLoggedUserInfo() {
-        System.out.println(userNameDisplayed.getText());
         return userNameDisplayed.getText();
     }
 

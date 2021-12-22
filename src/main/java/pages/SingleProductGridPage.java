@@ -10,7 +10,7 @@ public class SingleProductGridPage extends BasePage {
         PageFactory.initElements(new DefaultElementLocatorFactory(singleProductInGrid), this);
     }
 
-    @FindBy(css = ".product-title")
+    @FindBy(css = ".product .product-title")
     WebElement singleProductFromGrid;
 
     @FindBy(css = ".thumbnail-container .product-flags .discount")

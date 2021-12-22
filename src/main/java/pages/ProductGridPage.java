@@ -10,7 +10,7 @@ import java.util.List;
 public class ProductGridPage extends BasePage {
     String randomResult;
 
-    @FindBy(css = ".product")
+    @FindBy(css = ".product .product-title")
     List<WebElement> productList;
 
     public ProductGridPage(WebDriver webDriver) {
@@ -31,8 +31,7 @@ public class ProductGridPage extends BasePage {
     }
 
     public String getRandomProductName() {
-        getRandomWebElementFromList(productList).getText();
-        return randomResult;
+        return getRandomWebElementFromList(productList).getText();
     }
 
     public ProductGridPage goToRandomProduct() {

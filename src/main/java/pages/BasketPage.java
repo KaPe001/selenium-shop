@@ -24,13 +24,40 @@ public class BasketPage extends BasePage {
         return newProductsList;
     }
 
-    public String printNewList(){
-        String list  = "";
+    public String getProductNameFromBasket(){
+        String name  = "";
         for(BasketProductPage basketProductPage : createNewProductsList()){
-            list = basketProductPage.getProductName() + basketProductPage.getProductPrice()
-                    + basketProductPage.getProductQuantity() + basketProductPage.getProductTotalPrice();
-            System.out.println(list);
+            name = basketProductPage.getProductName();
+            System.out.println(name);
         }
-        return list;
+        return name;
     }
+
+    public String getProductPriceFormBasket(){
+        String price = "";
+        for(BasketProductPage basketProductPage : createNewProductsList()){
+            price = basketProductPage.getProductPrice();
+            System.out.println(price);
+        }
+        return price;
+    }
+
+    public String getProductQuantityFormBasket(){
+        String quantity = "";
+        for(BasketProductPage basketProductPage : createNewProductsList()){
+            quantity = basketProductPage.getProductQuantity();
+            System.out.println(quantity);
+        }
+        return quantity;
+    }
+
+    public String getTotalPriceFormBasket(){
+        String totalPrice = "";
+        for(BasketProductPage basketProductPage : createNewProductsList()){
+            totalPrice = basketProductPage.getProductTotalPrice();
+            System.out.println(totalPrice);
+        }
+        return totalPrice;
+    }
+
 }

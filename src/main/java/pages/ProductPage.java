@@ -52,6 +52,15 @@ public class ProductPage extends BasePage {
     @FindBy(css = "#_desktop_cart .cart-products-count")
     WebElement quantityOfCart;
 
+    @FindBy(css = ".product-customization .card")
+    WebElement customizeProductCard;
+
+    @FindBy(css = ".product-customization .card li textarea")
+    WebElement sendMessage;
+
+    @FindBy(css = ".product-customization .card .btn-primary")
+    WebElement saveCustomization;
+
     public ProductPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -142,5 +151,16 @@ public class ProductPage extends BasePage {
 
     public String checkIfUpdatedCartQuantity(){
         return quantityOfCart.getText();
+    }
+
+    public ProductPage isCustomizeCardDisplayed(){
+        if(customizeProductCard.isDisplayed() == true){
+            clickOnElement(sendMessage);
+            sendKeysToElement(sendMessage, "hi!");
+            clickOnElement(saveCustomization);
+        } else {
+            productGridPage.getRandomWebElementFromList(productGridPage.productList).click();
+        }
+        return this;
     }
 }
