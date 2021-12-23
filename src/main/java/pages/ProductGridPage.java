@@ -10,7 +10,7 @@ import java.util.List;
 public class ProductGridPage extends BasePage {
     String randomResult;
 
-    @FindBy(css = ".product .product-title")
+    @FindBy(css = ".product")
     List<WebElement> productList;
 
     public ProductGridPage(WebDriver webDriver) {
@@ -23,6 +23,19 @@ public class ProductGridPage extends BasePage {
             newList.add(new SingleProductGridPage(element));
         }
         return newList;
+    }
+
+    public String getProductGridSizeLabel() {
+        List<SingleProductGridPage> newProductGridList = createListOfProducts();
+        if (newProductGridList.size() == 1) {
+            return "There is 1 product.";
+        }
+        return "There are " + newProductGridList.size() + " products.";
+    }
+
+    public int getProductGridSize(){
+        List<SingleProductGridPage> newProductGridList = createListOfProducts();
+        return newProductGridList.size();
     }
 
     public WebElement getRandomWebElementFromList(List<WebElement> list) {

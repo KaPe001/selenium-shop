@@ -1,25 +1,24 @@
 package pages;
 
+import org.checkerframework.checker.units.qual.A;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static java.lang.Thread.sleep;
+
 public class CategoryPage extends BasePage {
+    ProductGridPage productGridPage = new ProductGridPage(webDriver);
+    FiltersPage filtersPage = new FiltersPage(webDriver);
 
     @FindBy(css = "#js-product-list-header h1")
     WebElement categoryName;
 
-    @FindBy(id = "search_filters")
-    WebElement filtersInCategoryPage;
-
-    @FindBy(css = "#products .total-products p")
-    WebElement amountLabel;
-
-    @FindBy(css = "#search_filters .facet .search-link")
-    WebElement filerDimension;
-
-    @FindBy(css = "#search_filters .facet .search-link .magnitude")
-    WebElement amountOfProductsInFilterLabel;
+    @FindBy(css = "#js-active-search-filters")
+    WebElement activeFiltersLabel;
 
     public CategoryPage(WebDriver webDriver) {
         super(webDriver);
@@ -33,31 +32,23 @@ public class CategoryPage extends BasePage {
         return categoryName;
     }
 
-    public CategoryPage checkIfFilterMenuIsDisplayed() {
-        if (!filtersInCategoryPage.isDisplayed()) {
-            System.out.println("Filters aren't displayed");
-            System.exit(1);
-        }
-        return this;
+    public String printHowManyProducts() {
+        waitUntil(filtersPage.amountLabel);
+        productGridPage.getProductGridSizeLabel();
+        return filtersPage.amountLabel.getText();
     }
 
-
-    //there is no grid in category page
-//    public String printHowManyProducts() {
-//        waitUntil(amountLabel);
-//
-//        if (productGridPage.createListOfProducts().size() == 1) {
-//            return "There is 1 product.";
-//        }
-//        return amountLabel.getText();
-//    }
-
-    public CategoryPage useFilter(){
-        clickOnElement(filerDimension);
+    public CategoryPage useFilter() throws InterruptedException {
+        List<SingleFilterPage> newFilterList = filtersPage.createNewFilterList();
+        for(SingleFilterPage singleFilterPage : newFilterList){
+            clickOnElement(singleFilterPage.filter);
+        }
+        sleep(1500);
+        waitUntil(activeFiltersLabel);
         return this;
     }
 
     public String getAmountOfProducts(){
-        return amountOfProductsInFilterLabel.getText();
+        return filtersPage.amountOfProductsInFilterLabel.getText().replace("()","");
     }
 }

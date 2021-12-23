@@ -1,25 +1,25 @@
 package tests;
 
 import testBase.Pages;
-import testBase.TestBase;
 import org.junit.jupiter.api.Test;
-import pages.CategoryPage;
-import pages.MainPage;
-import pages.ProductGridPage;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.IsEqual.equalTo;
 
 public class FiltersTest extends Pages {
 
     @Test
-    public void checkFilters() {
-//        int gridSize = new ProductGridPage.createListOfProducts().size();
+    public void checkFilters() throws InterruptedException {
 
-//        System.out.println(gridSize);
+        mainPage.goToArtCategory();
 
-        new MainPage(webDriver)
-                .goToArtCategory();
+//        for(int i = 0; i < filterPage.createNewFilterList().size(); i++) {
+            categoryPage.useFilter();
+            categoryPage.getAmountOfProducts();
 
-        new CategoryPage(webDriver)
-                .useFilter()
-                .getAmountOfProducts();
+            int gridSize = productGridPage.getProductGridSize();
+            assertThat(categoryPage.getAmountOfProducts(), equalTo("(" + gridSize + ")"));
+
+            filterPage.clearFilter();
     }
 }
