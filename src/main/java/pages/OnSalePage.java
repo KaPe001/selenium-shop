@@ -18,8 +18,11 @@ public class OnSalePage extends BasePage {
         super(webDriver);
     }
 
-    public String checkTitle(){
-        return pageTitle.getText();
+    public boolean checkTitle(){
+        if(pageTitle.isDisplayed()) {
+            return true;
+        }
+        return false;
     }
 
     public void clickOnProduct(){

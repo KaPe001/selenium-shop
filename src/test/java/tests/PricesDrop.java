@@ -1,36 +1,33 @@
 package tests;
 
 import org.junit.jupiter.api.Test;
-import pages.*;
 import testBase.Pages;
-import testBase.TestBase;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class PricesDrop extends Pages {
 
     @Test
     public void checkPricesDrop(){
 
-        new MainPage(webDriver)
-                .clickOnBanner();
+        mainPage.clickOnBanner();
+        assertTrue(onSalePage.checkTitle());
 
-        new OnSalePage(webDriver)
-                .checkTitle();
+        assertTrue(productGridPage.isDiscountFromProductsDisplayed());
 
-        new ProductGridPage(webDriver)
-                .getDiscountFromProducts();
+        assertTrue(productGridPage.isRegularPriceIsDisplayed());
+        assertTrue(productGridPage.isPriceAfterDiscountPriceIsDisplayed());
 
-        new ProductGridPage(webDriver)
-                .checkIfRegularPriceIsDisplayed()
-                .checkIfPriceAfterDiscountPriceIsDisplayed()
-                .calculateIfDiscountIsCorrect(productGridPage.getRegularPrice(), productGridPage.getPriceAfterDiscount());
+        assertTrue(productGridPage.calculateIfDiscountIsCorrect());
 
-        new OnSalePage(webDriver)
-                .clickOnProduct();
+        productGridPage.openOneOfDiscountedProducts();
 
-        new ProductPage(webDriver)
-                .checkForLabel()
-                .checkIfRegularPriceIsDisplayed()
-                .checkIfPriceAfterDiscountIsDisplayed();
-//                .calculateDiscount();
+        assertTrue(productPage.isDiscountLabelDisplayed());
+        assertTrue(productPage.isRegularPriceIsDisplayed());
+        assertTrue(productPage.isPriceAfterDiscountIsDisplayed());
+
+        String regularPrice = productPage.getRegularPrice();
+        String priceAfterDiscount = productPage.getPriceAfterDiscount();
+        assertTrue(productPage.isPriceAfterDiscountCorrect(regularPrice, priceAfterDiscount));
     }
 }

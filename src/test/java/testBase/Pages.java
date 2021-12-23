@@ -10,6 +10,7 @@ public class Pages extends TestBase {
     public CategoryPage categoryPage;
     public BasketPage basketPage;
     public FiltersPage filterPage;
+    public OnSalePage onSalePage;
 
     @BeforeEach
     public void setUpPages() {
@@ -19,5 +20,6 @@ public class Pages extends TestBase {
         categoryPage= new CategoryPage(webDriver);
         basketPage = new BasketPage(webDriver);
         filterPage = new FiltersPage(webDriver);
+        onSalePage = new OnSalePage(webDriver);
     }
 }

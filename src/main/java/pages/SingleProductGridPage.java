@@ -30,10 +30,6 @@ public class SingleProductGridPage extends BasePage {
         singleProductFromGrid.click();
     }
 
-    public String getDiscount(){
-        return discount.getText();
-    }
-
     public String getRegularPrice(){
         return regularPrice.getText();
     }

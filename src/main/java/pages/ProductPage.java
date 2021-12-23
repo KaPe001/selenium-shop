@@ -1,6 +1,5 @@
 package pages;
 
-import configuration.models.Product;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -63,31 +62,48 @@ public class ProductPage extends BasePage {
         return productName.getText();
     }
 
-    public ProductPage checkForLabel(){
-        discountLabel.getText();
-        return this;
+    public String getRegularPrice(){
+        return regularPrice.getText();
     }
 
-    public ProductPage checkIfRegularPriceIsDisplayed(){
-        if(!regularPrice.isDisplayed()){
-            logMessage("Something went wrong, price isn't displayed");
+    public String getPriceAfterDiscount(){
+        return priceAfterDiscount.getText();
+    }
+
+    public boolean isDiscountLabelDisplayed(){
+        if(discountLabel.isDisplayed()){
+            return true;
         }
-        return this;
+        return false;
     }
 
-    public ProductPage checkIfPriceAfterDiscountIsDisplayed(){
-        if(!priceAfterDiscount.isDisplayed()){
-            logMessage("Something went wrong, price isn't displayed");
+    public boolean isRegularPriceIsDisplayed(){
+        if(regularPrice.isDisplayed()){
+            return true;
         }
-        return this;
+        return false;
     }
 
-//    public ProductPage calculateDiscount(Product product) {
-//        productGridPage.calculateIfDiscountIsCorrect(regularPrice.getText(), priceAfterDiscount.getText());
-//        logMessage("Regular price on ProductPage is: 44.16, price after discount is: " + priceAfterDiscount.getText()
-//                + " which is - 20% on a regular price");
-//        return this;
-//    }
+    public boolean isPriceAfterDiscountIsDisplayed(){
+        if(priceAfterDiscount.isDisplayed()){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isPriceAfterDiscountCorrect(String regularPriceString, String priceAfterDiscountString){
+        regularPriceString = regularPriceString.replace("zł", " ");
+        priceAfterDiscountString = priceAfterDiscountString.replace("zł", " ");
+
+        double regularPrice = Double.parseDouble(regularPriceString);
+        double priceAfterDiscount = Double.parseDouble(priceAfterDiscountString);
+
+        double actualPrice = regularPrice * 0.80d;
+        if(actualPrice == priceAfterDiscount){
+            return true;
+        }
+        return false;
+    }
 
     public ProductPage getRandomQuantityOfProducts(){
         int min = 1;

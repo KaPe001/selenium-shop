@@ -54,66 +54,54 @@ public class ProductGridPage extends BasePage {
         return this;
     }
 
-    public ProductGridPage checkIfRegularPriceIsDisplayed() {
+    public boolean isRegularPriceIsDisplayed() {
         for (SingleProductGridPage singleProduct : createListOfProducts()) {
-            if (!singleProduct.regularPrice.isDisplayed()) {
-                logMessage("Something went wrong, regular price is not displayed!");
+            if (singleProduct.regularPrice.isDisplayed()) {
+                return true;
             }
         }
 
-        return this;
+        return false;
     }
 
-    public ProductGridPage checkIfPriceAfterDiscountPriceIsDisplayed() {
+    public boolean isPriceAfterDiscountPriceIsDisplayed() {
         for (SingleProductGridPage singleProduct : createListOfProducts()) {
-            if (!singleProduct.priceAfterDiscount.isDisplayed()) {
-                logMessage("Something went wrong, regular price is not displayed!");
+            if (singleProduct.priceAfterDiscount.isDisplayed()) {
+                return true;
             }
         }
-        return this;
+        return false;
     }
 
-    public String getDiscountFromProducts() {
-        String discountText = "";
+    public boolean isDiscountFromProductsDisplayed() {
         for (SingleProductGridPage singleProductGridPage : createListOfProducts()) {
-            discountText = singleProductGridPage.getDiscount();
+            if(singleProductGridPage.discount.isDisplayed()) {
+                return true;
+            }
         }
-        return discountText;
+        return false;
     }
 
-    public String getPriceAfterDiscount() {
-        String priceAfterDiscount = "";
+    public boolean calculateIfDiscountIsCorrect() {
         for (SingleProductGridPage singleProductGridPage : createListOfProducts()) {
-            singleProductGridPage.getPriceAfterDiscount();
-        }
-        return priceAfterDiscount;
-    }
+            String regularPriceString = singleProductGridPage.getRegularPrice();
+            regularPriceString = regularPriceString.replace("zł", " ");
 
-    public String getRegularPrice(){
-        String regularPrice = "";
-        for(SingleProductGridPage singleProductGridPage : createListOfProducts()) {
-            singleProductGridPage.getRegularPrice();
-        }
-        return regularPrice;
-    }
-
-    public ProductGridPage calculateIfDiscountIsCorrect(String regularPriceString, String priceAfterDiscount) {
-        for (SingleProductGridPage singleProductGridPage : createListOfProducts()){
-            regularPriceString = singleProductGridPage.getRegularPrice();
-            regularPriceString = regularPriceString.replace("zł"," ");
+            String priceAfterDiscountString = singleProductGridPage.getPriceAfterDiscount();
+            priceAfterDiscountString = priceAfterDiscountString.replace("zł", " ");
 
             double regularPrice = Double.parseDouble(regularPriceString);
+            double priceAfterDiscount = Double.parseDouble(priceAfterDiscountString);
             double actualPrice = regularPrice * 0.80d;
-            logMessage("Actual price is: " + String.format("%.2f", actualPrice) +
-                    " The product price on a website is: " + singleProductGridPage.getPriceAfterDiscount());
-    }
-        return this;
+            if (actualPrice == priceAfterDiscount) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public ProductGridPage openOneOfDiscountedProducts() {
-        for (SingleProductGridPage singleProductGridPage : createListOfProducts()) {
-            singleProductGridPage.clickOnProduct();
-        }
+        getRandomWebElementFromList(productList).click();
         return this;
     }
 
