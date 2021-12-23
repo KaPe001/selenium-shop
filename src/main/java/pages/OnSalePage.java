@@ -6,7 +6,6 @@ import org.openqa.selenium.support.FindBy;
 
 
 public class OnSalePage extends BasePage {
-    ProductGridPage productGridPage = new ProductGridPage(webDriver);
 
     @FindBy(css = "#main #js-product-list-header")
     WebElement pageTitle;

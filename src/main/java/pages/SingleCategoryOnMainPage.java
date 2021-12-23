@@ -20,12 +20,12 @@ public class SingleCategoryOnMainPage extends BasePage {
     WebElement artCategory;
 
     public SingleCategoryOnMainPage goToCategory() {
-        clickOnElement(accessoriesCategory);
+        accessoriesCategory.click();
         return this;
     }
 
     public SingleCategoryOnMainPage getCategory(WebElement element) {
-        clickOnElement(element);
+        element.click();
         return this;
     }
 

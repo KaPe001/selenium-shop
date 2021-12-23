@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductGridPage extends BasePage {
-    ProductPage productPage = new ProductPage(webDriver);
     String randomResult;
 
     @FindBy(css = ".product .product-title")
@@ -103,5 +102,16 @@ public class ProductGridPage extends BasePage {
             singleProductGridPage.clickOnProduct();
         }
         return this;
+    }
+
+    public boolean isProductOnTheList(String productName){
+        List<SingleProductGridPage> productsList = createListOfProducts();
+        for(SingleProductGridPage singleProductGridPage : productsList){
+            waitUntil(singleProductGridPage.singleProductFromGrid);
+            if(singleProductGridPage.getProductName().equals(productName)){
+                return true;
+            }
+        }
+        return false;
     }
 }

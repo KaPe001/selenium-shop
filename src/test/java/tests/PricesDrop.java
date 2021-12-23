@@ -2,13 +2,13 @@ package tests;
 
 import org.junit.jupiter.api.Test;
 import pages.*;
+import testBase.Pages;
 import testBase.TestBase;
 
-public class PricesDrop extends TestBase {
+public class PricesDrop extends Pages {
 
     @Test
     public void checkPricesDrop(){
-        ProductGridPage productGridPage = new ProductGridPage(webDriver);
 
         new MainPage(webDriver)
                 .clickOnBanner();
@@ -30,7 +30,7 @@ public class PricesDrop extends TestBase {
         new ProductPage(webDriver)
                 .checkForLabel()
                 .checkIfRegularPriceIsDisplayed()
-                .checkIfPriceAfterDiscountIsDisplayed()
-                .calculateDiscount();
+                .checkIfPriceAfterDiscountIsDisplayed();
+//                .calculateDiscount();
     }
 }

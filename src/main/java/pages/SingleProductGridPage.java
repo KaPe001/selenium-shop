@@ -10,7 +10,7 @@ public class SingleProductGridPage extends BasePage {
         PageFactory.initElements(new DefaultElementLocatorFactory(singleProductInGrid), this);
     }
 
-    @FindBy(css = ".product .product-title")
+    @FindBy(css = ".product-title a")
     WebElement singleProductFromGrid;
 
     @FindBy(css = ".thumbnail-container .product-flags .discount")
@@ -27,12 +27,12 @@ public class SingleProductGridPage extends BasePage {
     }
 
     public SingleProductGridPage goToProduct(){
-        clickOnElement(singleProductFromGrid);
+        singleProductFromGrid.click();
         return this;
     }
 
     public void clickOnProduct(){
-        clickOnElement(singleProductFromGrid);
+        singleProductFromGrid.click();
     }
 
     public String getDiscount(){

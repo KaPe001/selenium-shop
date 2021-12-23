@@ -41,15 +41,16 @@ public class CategoryPage extends BasePage {
         return this;
     }
 
-    public String printHowManyProducts() {
-        ProductGridPage productGridPage = new ProductGridPage(webDriver);
-        waitUntil(amountLabel);
 
-        if (productGridPage.createListOfProducts().size() == 1) {
-            return "There is 1 product.";
-        }
-        return amountLabel.getText();
-    }
+    //there is no grid in category page
+//    public String printHowManyProducts() {
+//        waitUntil(amountLabel);
+//
+//        if (productGridPage.createListOfProducts().size() == 1) {
+//            return "There is 1 product.";
+//        }
+//        return amountLabel.getText();
+//    }
 
     public CategoryPage useFilter(){
         clickOnElement(filerDimension);

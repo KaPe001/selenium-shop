@@ -66,5 +66,4 @@ public class BasketPage extends BasePage {
         }
         return totalPrice;
     }
-
 }

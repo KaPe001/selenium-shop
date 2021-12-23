@@ -1,17 +1,11 @@
 package pages;
 
+import configuration.models.Product;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.IsEqual.equalTo;
-
 public class ProductPage extends BasePage {
-    ProductGridPage productGridPage = new ProductGridPage(webDriver);
 
     @FindBy(css = ".product-container [itemprop = 'name']")
     WebElement productName;
@@ -88,12 +82,12 @@ public class ProductPage extends BasePage {
         return this;
     }
 
-    public ProductPage calculateDiscount() {
-        productGridPage.calculateIfDiscountIsCorrect(regularPrice.getText(), priceAfterDiscount.getText());
-        logMessage("Regular price on ProductPage is: 44.16, price after discount is: " + priceAfterDiscount.getText()
-                + " which is - 20% on a regular price");
-        return this;
-    }
+//    public ProductPage calculateDiscount(Product product) {
+//        productGridPage.calculateIfDiscountIsCorrect(regularPrice.getText(), priceAfterDiscount.getText());
+//        logMessage("Regular price on ProductPage is: 44.16, price after discount is: " + priceAfterDiscount.getText()
+//                + " which is - 20% on a regular price");
+//        return this;
+//    }
 
     public ProductPage getRandomQuantityOfProducts(){
         int min = 1;

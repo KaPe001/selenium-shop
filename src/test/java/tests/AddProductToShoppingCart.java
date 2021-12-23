@@ -5,18 +5,16 @@ import org.openqa.selenium.By;
 import pages.MainPage;
 import pages.ProductGridPage;
 import pages.ProductPage;
+import testBase.Pages;
 import testBase.TestBase;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsEqual.equalTo;
 
-public class AddProductToShoppingCart extends TestBase {
+public class AddProductToShoppingCart extends Pages {
 
     @Test
     public void successfullyAddedProduct() {
-        MainPage mainPage = new MainPage(webDriver);
-        ProductGridPage productGridPage = new ProductGridPage(webDriver);
-        ProductPage productPage = new ProductPage(webDriver);
 
         for (int i = 0; i < 3; i++) {
             mainPage.goToRandomCategory();

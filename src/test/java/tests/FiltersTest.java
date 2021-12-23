@@ -1,20 +1,19 @@
 package tests;
 
+import testBase.Pages;
 import testBase.TestBase;
 import org.junit.jupiter.api.Test;
 import pages.CategoryPage;
 import pages.MainPage;
 import pages.ProductGridPage;
 
-public class FiltersTest extends TestBase {
+public class FiltersTest extends Pages {
 
     @Test
     public void checkFilters() {
-        ProductGridPage productGridPage = new ProductGridPage(webDriver);
+//        int gridSize = new ProductGridPage.createListOfProducts().size();
 
-        int gridSize = productGridPage.createListOfProducts().size();
-
-        System.out.println(gridSize);
+//        System.out.println(gridSize);
 
         new MainPage(webDriver)
                 .goToArtCategory();

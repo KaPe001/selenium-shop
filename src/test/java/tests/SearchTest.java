@@ -1,36 +1,32 @@
 package tests;
 
-import testBase.TestBase;
+import testBase.Pages;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import pages.MainPage;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsEqual.equalTo;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class SearchTest extends TestBase {
+public class SearchTest extends Pages {
 
     @Test
     public void searchForProduct() {
-        MainPage mainPage = new MainPage(webDriver);
+        String productName = productGridPage.getRandomProductName();
 
-        mainPage.searchProduct()
-                .getResultName();
+        mainPage.searchProduct(productName)
+                        .clickSearchIcon();
 
-        assertThat(mainPage.getResultName(),
-                equalTo(webDriver.findElement(By.cssSelector("#search_widget input[type='text']")).getText()));
-
-        mainPage.selectResult();
+        assertTrue(productGridPage.isProductOnTheList(productName));
     }
 
     @Test
     public void searchResultInDropdown() {
-        MainPage mainPage = new MainPage(webDriver);
+        String productName = productGridPage.getRandomProductName();
 
-        mainPage.searchProduct()
-                .getResultName();
-        mainPage.checkForResultInResultDropDownList()
-                .selectResult();
+        mainPage.searchProduct(productName);
+
+        assertTrue(mainPage.isResultInResultDropDownList(productName));
+
     }
 
 }

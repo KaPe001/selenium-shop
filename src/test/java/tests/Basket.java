@@ -6,16 +6,13 @@ import pages.BasketPage;
 import pages.MainPage;
 import pages.ProductGridPage;
 import pages.ProductPage;
+import testBase.Pages;
 import testBase.TestBase;
 
-public class Basket extends TestBase {
+public class Basket extends Pages {
 
     @Test
     public void addProductsToBasket() {
-        MainPage mainPage = new MainPage(webDriver);
-        ProductGridPage productGridPage = new ProductGridPage(webDriver);
-        ProductPage productPage = new ProductPage(webDriver);
-        BasketPage basketPage = new BasketPage(webDriver);
 
         for(int i = 0; i < 5; i++) {
             mainPage.goToRandomCategory();

@@ -1,6 +1,5 @@
 package pages;
 
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -21,7 +20,6 @@ public class MainPage extends BasePage {
     ProductGridPage productGridPage = new ProductGridPage(webDriver);
     Logger logger = LoggerFactory.getLogger(MainPage.class);
 
-    private EventFiringMouse eventFiringMouse;
     private WebListener webListener;
 
     @FindBy(css = "[id='header'] [id='_desktop_user_info'] .hidden-sm-down")
@@ -36,10 +34,10 @@ public class MainPage extends BasePage {
     @FindBy(css = "#search_widget input[type='text']")
     WebElement searchBox;
 
-    @FindBy(css = ".ui-menu-item span[class='product']")
-    WebElement result;
+    @FindBy(css = "#search_widget .material-icons")
+    WebElement searchIcon;
 
-    @FindBy(css = ".ui-menu .ui-menu-item")
+    @FindBy(css = ".ui-menu")
     List<WebElement> resultList;
 
     @FindBy(css = "#top-menu > .category")
@@ -57,14 +55,13 @@ public class MainPage extends BasePage {
     @FindBy(css = "#_desktop_cart a")
     WebElement basketBtn;
 
-    public MainPage mouseHoverOnElementFromList(WebElement element) {
+    public void mouseHoverOnElementFromList(WebElement element) {
         logger.info("Mouse hover on an element link from a list ");
         mouseHover(element);
-        return this;
     }
 
     private void mouseHover(WebElement webElement) {
-        eventFiringMouse = new EventFiringMouse(webDriver, webListener);
+        EventFiringMouse eventFiringMouse = new EventFiringMouse(webDriver, webListener);
         Locatable item = (Locatable) webElement;
         Coordinates coordinates = item.getCoordinates();
         eventFiringMouse.mouseMove(coordinates);
@@ -89,30 +86,43 @@ public class MainPage extends BasePage {
         }
     }
 
-    public MainPage searchProduct() {
-        clickOnElement(searchBox);
-        sendKeysToElement(searchBox, productGridPage.getRandomProductName());
+    public MainPage searchProduct(String productName) {
+        sendKeysToElement(searchBox, productName);
+
         return this;
     }
 
-    public String getResultName() {
-        return searchBox.getText();
-    }
-
-    public MainPage selectResult() {
-        clickOnElement(result);
+    public MainPage clickSearchIcon(){
+        clickOnElement(searchIcon);
         return this;
     }
 
-    public MainPage checkForResultInResultDropDownList() {
-        for (int i = 1; i <= resultList.size(); i++) {
-            if (result.equals(productGridPage.randomResult)) {
-                logMessage("Products match");
-            } else {
-                logMessage("Something went wrong");
+    public List<SingleDropdownResultList> getNewResultList(){
+        List<SingleDropdownResultList> newResultList = new ArrayList<>();
+        for(WebElement element : resultList) {
+            newResultList.add(new SingleDropdownResultList(element));
+        }
+        return newResultList;
+    }
+
+    public String printListProducts() {
+        String printResult = "";
+        List<SingleDropdownResultList> dropdownList = getNewResultList();
+        for (SingleDropdownResultList singleDropdownResultList : dropdownList) {
+            printResult = singleDropdownResultList.getResultFromListName();
+        }
+        return printResult;
+    }
+
+    public boolean isResultInResultDropDownList(String randomResult) {
+        List<SingleDropdownResultList> dropdownList = getNewResultList();
+        for (SingleDropdownResultList singleDropdownResultList : dropdownList) {
+            waitUntil(singleDropdownResultList.result);
+            if (singleDropdownResultList.getResultFromListName().equals(randomResult)) {
+                return true;
             }
         }
-        return this;
+        return false;
     }
 
     public WebElement getCategoriesListIndex(int index){
@@ -154,7 +164,7 @@ public class MainPage extends BasePage {
 //        return this;
 //    }
 
-    public MainPage iterateThroughSubCategories() {
+    public void iterateThroughSubCategories() {
         CategoryPage categoryPage = new CategoryPage(webDriver);
 
         for (int i = 0; i < createNewCategoryList().size(); i++) {
@@ -169,38 +179,32 @@ public class MainPage extends BasePage {
                 categoryPage.checkIfFilterMenuIsDisplayed();
                 logMessage("Filters are displayed");
 
-                Assert.assertEquals(categoryPage.printHowManyProducts(), (getActualProductGridSize(productGridPage.createListOfProducts().size())));
+//                Assert.assertEquals(categoryPage.printHowManyProducts(), (getActualProductGridSize(productGridPage.createListOfProducts().size())));
                 mouseHoverOnElementFromList(categoriesList.get(i));
             }
         }
-        return this;
     }
 
     public String getActualProductGridSize(int size) {
-        ProductGridPage productGridPage = new ProductGridPage(webDriver);
         if (productGridPage.createListOfProducts().size() == 1) {
             return "There is 1 product.";
         }
         return "There are " + size + " products.";
     }
 
-    public MainPage goToArtCategory() {
+    public void goToArtCategory() {
         clickOnElement(art);
-        return this;
     }
 
-    public MainPage clickOnBanner() {
+    public void clickOnBanner() {
         clickOnElement(bannerPriceOff);
-        return this;
     }
 
-    public MainPage goToRandomCategory() {
+    public void goToRandomCategory() {
         productGridPage.getRandomWebElementFromList(categoriesList).click();
-        return this;
     }
 
-    public MainPage goToBasket(){
+    public void goToBasket(){
         clickOnElement(basketBtn);
-        return this;
     }
 }
