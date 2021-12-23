@@ -17,7 +17,8 @@ public class SearchTest extends TestBase {
         mainPage.searchProduct()
                 .getResultName();
 
-        assertThat(mainPage.getResultName(), equalTo(webDriver.findElement(By.cssSelector("#search_widget input[type='text']")).getText()));
+        assertThat(mainPage.getResultName(),
+                equalTo(webDriver.findElement(By.cssSelector("#search_widget input[type='text']")).getText()));
 
         mainPage.selectResult();
     }

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductGridPage extends BasePage {
+    ProductPage productPage = new ProductPage(webDriver);
     String randomResult;
 
     @FindBy(css = ".product .product-title")
@@ -36,6 +37,8 @@ public class ProductGridPage extends BasePage {
 
     public ProductGridPage goToRandomProduct() {
         getRandomWebElementFromList(productList).click();
+
+//        productPage.isCustomizeCardDisplayed();
         return this;
     }
 

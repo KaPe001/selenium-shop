@@ -24,6 +24,13 @@ public class BasketPage extends BasePage {
         return newProductsList;
     }
 
+    public boolean areProductsDisplayedInBasket() {
+        for (BasketProductPage basketProductPage : createNewProductsList()) {
+            return basketProductPage.getProductName().contains(createNewProductsList().toString());
+        }
+        return true;
+    }
+
     public String getProductNameFromBasket(){
         String name  = "";
         for(BasketProductPage basketProductPage : createNewProductsList()){

@@ -153,14 +153,15 @@ public class ProductPage extends BasePage {
         return quantityOfCart.getText();
     }
 
-    public ProductPage isCustomizeCardDisplayed(){
-        if(customizeProductCard.isDisplayed() == true){
-            clickOnElement(sendMessage);
-            sendKeysToElement(sendMessage, "hi!");
-            clickOnElement(saveCustomization);
-        } else {
-            productGridPage.getRandomWebElementFromList(productGridPage.productList).click();
-        }
-        return this;
-    }
+//    public ProductPage isCustomizeCardDisplayed(){
+//        if(productName.getText().equals("CUSTOMIZABLE MUG")){
+//            clickOnElement(sendMessage);
+//            sendKeysToElement(sendMessage, "hi!");
+//            clickOnElement(saveCustomization);
+//            clickOnElement(addToCartBtn);
+//        } else {
+//            productGridPage.getRandomWebElementFromList(productGridPage.productList).click();
+//        }
+//        return this;
+//    }
 }

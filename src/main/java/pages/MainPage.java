@@ -48,12 +48,6 @@ public class MainPage extends BasePage {
     @FindBy(css = "#top-menu > .category > .sub-menu > .top-menu > .category")
     List<WebElement> subCategoriesList;
 
-    @FindBy(css = "#category-3 > a")
-    WebElement clothes;
-
-    @FindBy(css = "#category-6 > a")
-    WebElement accessories;
-
     @FindBy(css = "#category-9 > a")
     WebElement art;
 
@@ -121,6 +115,10 @@ public class MainPage extends BasePage {
         return this;
     }
 
+    public WebElement getCategoriesListIndex(int index){
+        return categoriesList.get(index);
+    }
+
     public List<SingleCategoryOnMainPage> createNewCategoryList() {
         List<SingleCategoryOnMainPage> newCategoryList = new ArrayList<>();
         for (WebElement element : categoriesList) {
@@ -137,24 +135,24 @@ public class MainPage extends BasePage {
         return newSubCategoryList;
     }
 
-    public MainPage iterateThroughAllCategories() {
-        CategoryPage categoryPage = new CategoryPage(webDriver);
-
-        for (int i = 0; i < createNewCategoryList().size(); i++) {
-            clickOnElement(categoriesList.get(i));
-
-            waitUntil(categoryPage.categoryName);
-            assertThat(categoryPage.getCategoryName(), equalTo(webDriver.findElement(By.cssSelector("#js-product-list-header h1")).getText()));
-            logger.info("Category name matches with clicked category");
-
-            categoryPage.checkIfFilterMenuIsDisplayed();
-            logger.info("Filters are displayed");
-
-            Assert.assertEquals(categoryPage.printHowManyProducts(), (getActualProductGridSize(productGridPage.createListOfProducts().size())));
-            logger.info("Amount of products in grid match with the label");
-        }
-        return this;
-    }
+//    public MainPage iterateThroughAllCategories() {
+//        CategoryPage categoryPage = new CategoryPage(webDriver);
+//
+//        for (int i = 0; i < createNewCategoryList().size(); i++) {
+//            clickOnElement(categoriesList.get(i));
+//
+//            waitUntil(categoryPage.categoryName);
+//            assertThat(categoryPage.getCategoryName(), equalTo(webDriver.findElement(By.cssSelector("#js-product-list-header h1")).getText()));
+//            logMessage("Category name matches with clicked category");
+//
+//            categoryPage.checkIfFilterMenuIsDisplayed();
+//            logMessage("Filters are displayed");
+//
+//            Assert.assertEquals(categoryPage.printHowManyProducts(), (getActualProductGridSize(productGridPage.createListOfProducts().size())));
+//            logMessage("Amount of products in grid match with the label");
+//        }
+//        return this;
+//    }
 
     public MainPage iterateThroughSubCategories() {
         CategoryPage categoryPage = new CategoryPage(webDriver);
@@ -166,10 +164,10 @@ public class MainPage extends BasePage {
                 clickOnElement(subCategoriesList.get(j));
                 waitUntil(categoryPage.categoryName);
                 assertThat(categoryPage.getCategoryName(), equalTo(webDriver.findElement(By.cssSelector("#js-product-list-header h1")).getText()));
-                logger.info("Category name matches with clicked category");
+                logMessage("Category name matches with clicked category");
 
                 categoryPage.checkIfFilterMenuIsDisplayed();
-                logger.info("Filters are displayed");
+                logMessage("Filters are displayed");
 
                 Assert.assertEquals(categoryPage.printHowManyProducts(), (getActualProductGridSize(productGridPage.createListOfProducts().size())));
                 mouseHoverOnElementFromList(categoriesList.get(i));

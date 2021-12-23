@@ -9,9 +9,10 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pages.BasePage;
 import pages.WebListener;
 
-public class TestBase {
+public class TestBase extends BasePage {
     public static Logger logger = LoggerFactory.getLogger(TestBase.class);
     public WebDriver webDriver;
     private EventFiringWebDriver driver;

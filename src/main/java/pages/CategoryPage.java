@@ -29,6 +29,10 @@ public class CategoryPage extends BasePage {
         return categoryName.getText();
     }
 
+    public WebElement getCategory(){
+        return categoryName;
+    }
+
     public CategoryPage checkIfFilterMenuIsDisplayed() {
         if (!filtersInCategoryPage.isDisplayed()) {
             System.out.println("Filters aren't displayed");
