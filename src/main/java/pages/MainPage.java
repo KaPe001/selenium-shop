@@ -13,9 +13,6 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.IsEqual.equalTo;
-
 public class MainPage extends BasePage {
     ProductGridPage productGridPage = new ProductGridPage(webDriver);
     Logger logger = LoggerFactory.getLogger(MainPage.class);
@@ -137,59 +134,10 @@ public class MainPage extends BasePage {
         return newCategoryList;
     }
 
-    public List<SingleSubCategoryOnMainPage> createNewSubCategoryList() {
-        List<SingleSubCategoryOnMainPage> newSubCategoryList = new ArrayList<>();
-        for (WebElement element : subCategoriesList) {
-            newSubCategoryList.add(new SingleSubCategoryOnMainPage(element));
-        }
-        return newSubCategoryList;
-    }
-
-//    public MainPage iterateThroughAllCategories() {
-//        CategoryPage categoryPage = new CategoryPage(webDriver);
-//
-//        for (int i = 0; i < createNewCategoryList().size(); i++) {
-//            clickOnElement(categoriesList.get(i));
-//
-//            waitUntil(categoryPage.categoryName);
-//            assertThat(categoryPage.getCategoryName(), equalTo(webDriver.findElement(By.cssSelector("#js-product-list-header h1")).getText()));
-//            logMessage("Category name matches with clicked category");
-//
-//            categoryPage.checkIfFilterMenuIsDisplayed();
-//            logMessage("Filters are displayed");
-//
-//            Assert.assertEquals(categoryPage.printHowManyProducts(), (getActualProductGridSize(productGridPage.createListOfProducts().size())));
-//            logMessage("Amount of products in grid match with the label");
-//        }
-//        return this;
-//    }
-
-    public void iterateThroughSubCategories() {
-        CategoryPage categoryPage = new CategoryPage(webDriver);
-
-        for (int i = 0; i < createNewCategoryList().size(); i++) {
-            mouseHoverOnElementFromList(categoriesList.get(i));
-
-            for (int j = 0; j < createNewSubCategoryList().size() - 2; j++) {
-                clickOnElement(subCategoriesList.get(j));
-                waitUntil(categoryPage.categoryName);
-                assertThat(categoryPage.getCategoryName(), equalTo(webDriver.findElement(By.cssSelector("#js-product-list-header h1")).getText()));
-                logMessage("Category name matches with clicked category");
-
-                categoryPage.checkIfFilterMenuIsDisplayed();
-                logMessage("Filters are displayed");
-
-//                Assert.assertEquals(categoryPage.printHowManyProducts(), (getActualProductGridSize(productGridPage.createListOfProducts().size())));
-                mouseHoverOnElementFromList(categoriesList.get(i));
-            }
-        }
-    }
-
-    public String getActualProductGridSize(int size) {
-        if (productGridPage.createListOfProducts().size() == 1) {
-            return "There is 1 product.";
-        }
-        return "There are " + size + " products.";
+    public List<WebElement> createNewSubCategoryListDependingOnCategory(int index) {
+        WebElement category = getCategoriesListIndex(index);
+        List<WebElement> subCategory = new SingleSubCategoryOnMainPage(category).getSubCategory();
+        return subCategory;
     }
 
     public void goToArtCategory() {
