@@ -44,7 +44,12 @@ public class ProductGridPage extends BasePage {
     }
 
     public String getRandomProductName() {
-        return getRandomWebElementFromList(productList).getText();
+        String getProductName = "";
+        List<SingleProductGridPage> newList = createListOfProducts();
+        for(SingleProductGridPage singleProductGridPage : newList) {
+            getProductName = singleProductGridPage.getProductName();
+        }
+        return getProductName;
     }
 
     public ProductGridPage goToRandomProduct() {

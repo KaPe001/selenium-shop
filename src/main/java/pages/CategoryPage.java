@@ -1,11 +1,9 @@
 package pages;
 
-import org.checkerframework.checker.units.qual.A;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.Thread.sleep;
@@ -40,9 +38,8 @@ public class CategoryPage extends BasePage {
 
     public CategoryPage useFilter() throws InterruptedException {
         List<SingleFilterPage> newFilterList = filtersPage.createNewFilterList();
-        for(SingleFilterPage singleFilterPage : newFilterList){
-            clickOnElement(singleFilterPage.filter);
-        }
+        clickOnElement(newFilterList.get(rnd.nextInt(newFilterList.size())).filter);
+
         sleep(1500);
         waitUntil(activeFiltersLabel);
         return this;

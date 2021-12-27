@@ -8,6 +8,7 @@ import testBase.Pages;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsEqual.equalTo;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ProductsAndCategoriesTest extends Pages {
     Logger logger = LoggerFactory.getLogger(ProductsAndCategoriesTest.class);
@@ -36,13 +37,13 @@ public class ProductsAndCategoriesTest extends Pages {
         for (int i = 0; i < mainPage.createNewCategoryList().size(); i++) {
             for(int j = 0; j < mainPage.createNewSubCategoryListDependingOnCategory(i).size(); j++){
                 mainPage.mouseHoverOnElementFromList(mainPage.getCategoriesListIndex(i));
-                mainPage.createNewSubCategoryListDependingOnCategory(i).get(j).click(); //create a click method in mainPage
+                mainPage.createNewSubCategoryListDependingOnCategory(i).get(j).click();
 
                 String categoryName = categoryPage.getCategoryName();
                 assertThat(categoryPage.getCategoryName(), equalTo(categoryName));
                 logger.info("Category name matches with clicked category");
 
-                filterPage.checkIfFilterMenuIsDisplayed();
+                assertTrue(filterPage.checkIfFilterMenuIsDisplayed());
                 logger.info("Filters are displayed");
 
                 String productGridSize = productGridPage.getProductGridSizeLabel();

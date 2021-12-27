@@ -9,14 +9,11 @@ import java.util.List;
 
 public class FiltersPage extends BasePage{
 
-    @FindBy(id = "search_filters")
+    @FindBy(css = "#search_filters section:last-child li")
     List<WebElement> filtersInCategoryPage;
 
     @FindBy(css = "#products .total-products p")
     WebElement amountLabel;
-
-    @FindBy(css = "#search_filters .facet .search-link")
-    WebElement filerDimension;
 
     @FindBy(css = "#search_filters .facet .search-link .magnitude")
     WebElement amountOfProductsInFilterLabel;
@@ -36,15 +33,15 @@ public class FiltersPage extends BasePage{
         return newFilterList;
     }
 
-    public FiltersPage checkIfFilterMenuIsDisplayed() {
+    public boolean checkIfFilterMenuIsDisplayed() {
         List<SingleFilterPage> newFilterList = createNewFilterList();
         for(SingleFilterPage singleFilterPage : newFilterList){
-            if(!singleFilterPage.isFilterDisplayed()){
-                System.out.println("Filters aren't displayed");
-                System.exit(1);
+            waitUntil(singleFilterPage.filter);
+            if(singleFilterPage.isFilterDisplayed()){
+                return true;
             }
         }
-        return this;
+        return false;
     }
 
     public FiltersPage clearFilter(){
