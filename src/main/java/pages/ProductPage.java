@@ -1,8 +1,12 @@
 package pages;
 
+import configuration.basket.BasketClass;
+import configuration.basket.Product;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import java.math.BigDecimal;
 
 public class ProductPage extends BasePage {
 
@@ -70,6 +74,11 @@ public class ProductPage extends BasePage {
         return priceAfterDiscount.getText();
     }
 
+    public BigDecimal getPriceAfterDiscountBigDecimal(){
+        String priceAfterDiscountReplace = priceAfterDiscount.getText().replace("zł", "");
+        return new BigDecimal(priceAfterDiscountReplace);
+    }
+
     public boolean isDiscountLabelDisplayed(){
         if(discountLabel.isDisplayed()){
             return true;
@@ -115,13 +124,28 @@ public class ProductPage extends BasePage {
     }
 
     public ProductPage addToCart(){
+        BasketClass basketClass = new BasketClass();
+        if(isCustomizeCardDisplayed()) {
+            clickOnElement(sendMessage);
+            sendKeysToElement(sendMessage, "hi!");
+            clickOnElement(saveCustomization);
+        }
         clickOnElement(addToCartBtn);
+        basketClass.addProductToCart(new Product(getProductName(), getPriceAfterDiscountBigDecimal()), 1);
         return this;
+    }
+
+    public String getProductCount(){
+        return productCountInPopUp.getText();
     }
 
     public String checkIfCorrectProduct(){
         waitUntil(productNameInPopUp);
         return productNameInPopUp.getText();
+    }
+
+    public String getProductQuantity(){
+        return productQuantityInPopUp.getText();
     }
 
     public String checkIfCorrectQuantity() {
@@ -163,15 +187,10 @@ public class ProductPage extends BasePage {
         return quantityOfCart.getText();
     }
 
-//    public ProductPage isCustomizeCardDisplayed(){
-//        if(productName.getText().equals("CUSTOMIZABLE MUG")){
-//            clickOnElement(sendMessage);
-//            sendKeysToElement(sendMessage, "hi!");
-//            clickOnElement(saveCustomization);
-//            clickOnElement(addToCartBtn);
-//        } else {
-//            productGridPage.getRandomWebElementFromList(productGridPage.productList).click();
-//        }
-//        return this;
-//    }
+    public boolean isCustomizeCardDisplayed(){
+        if(productName.getText().equals("CUSTOMIZABLE MUG")){
+            return true;
+        }
+        return false;
+    }
 }

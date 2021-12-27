@@ -23,17 +23,14 @@ public class AddProductToShoppingCart extends Pages {
             productPage.getRandomQuantityOfProducts();
             productPage.addToCart();
 
-            productPage.checkIfCorrectProduct();
-            assertThat(productPage.checkIfCorrectProduct(),
-                    equalTo(webDriver.findElement(By.cssSelector(".modal-body .product-name")).getText()));
+            String productName = productPage.getProductName();
+            assertThat(productPage.checkIfCorrectProduct(), equalTo(productName));
 
-            productPage.checkIfCorrectQuantity();
-            assertThat(productPage.checkIfCorrectQuantity(),
-                    equalTo("Quantity: " + webDriver.findElement(By.cssSelector(".modal-body .product-quantity strong")).getText()));
+            String productQuantity = productPage.getProductQuantity();
+            assertThat(productPage.checkIfCorrectQuantity(), equalTo(productQuantity));
 
-            productPage.checkIfProductCountIsCorrect();
-            assertThat(productPage.checkIfProductCountIsCorrect(),
-                    equalTo(webDriver.findElement(By.cssSelector(".modal-body .cart-content .cart-products-count")).getText()));
+            String productCountLabel = productPage.getProductCount();
+            assertThat(productPage.checkIfProductCountIsCorrect(), equalTo(productCountLabel));
 
             productPage.checkIfTotalProductPriceIsCorrect();
 //            assertThat(productPage.checkIfTotalProductPriceIsCorrect(),
