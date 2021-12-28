@@ -1,12 +1,7 @@
 package tests;
 
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import pages.MainPage;
-import pages.ProductGridPage;
-import pages.ProductPage;
 import testBase.Pages;
-import testBase.TestBase;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsEqual.equalTo;
@@ -37,9 +32,9 @@ public class AddProductToShoppingCart extends Pages {
 //                    equalTo(productPage.getSubtotalValueConvert())); throws and error bc of the problem with total price
 
             productPage.continueShopping();
-            productPage.checkIfUpdatedCartQuantity();
-            assertThat(productPage.checkIfUpdatedCartQuantity(),
-                    equalTo(webDriver.findElement(By.cssSelector("#_desktop_cart .cart-products-count")).getText()));
+
+            String cartQuantity = productPage.getCartQuantity();
+            assertThat(productPage.checkIfUpdatedCartQuantity(), equalTo(cartQuantity));
         }
     }
 }
