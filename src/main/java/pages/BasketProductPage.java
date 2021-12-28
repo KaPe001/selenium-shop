@@ -10,7 +10,7 @@ public class BasketProductPage {
         PageFactory.initElements(new DefaultElementLocatorFactory(product), this);
     }
 
-    @FindBy(css = ".product-line-grid .product-line-info a")
+    @FindBy(css = ".product-line-grid a")
     WebElement productName;
 
     @FindBy(css = ".product-line-grid .product-line-info .price")

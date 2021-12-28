@@ -54,8 +54,6 @@ public class ProductGridPage extends BasePage {
 
     public ProductGridPage goToRandomProduct() {
         getRandomWebElementFromList(productList).click();
-
-//        productPage.isCustomizeCardDisplayed();
         return this;
     }
 

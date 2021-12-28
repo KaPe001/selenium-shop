@@ -25,6 +25,9 @@ public class LoginPage extends BasePage{
     @FindBy(css = ".no-account a")
     WebElement createNewAccountBtn;
 
+    @FindBy(css = "#content > .no-account a")
+    WebElement registerUserBtn;
+
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -60,5 +63,11 @@ public class LoginPage extends BasePage{
         } else {
             System.out.println("Existing user logged in properly");
         }
+    }
+
+    public LoginPage registerUser(){
+        waitUntil(registerUserBtn);
+        clickOnElement(registerUserBtn);
+        return this;
     }
 }

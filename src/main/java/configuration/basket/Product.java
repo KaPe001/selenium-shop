@@ -1,4 +1,4 @@
-package basket;
+package configuration.basket;
 
 import java.math.BigDecimal;
 import java.util.Objects;

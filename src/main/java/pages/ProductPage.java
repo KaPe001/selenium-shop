@@ -46,6 +46,9 @@ public class ProductPage extends BasePage {
     @FindBy(css = ".cart-content-btn .btn-secondary")
     WebElement continueShoppingBtn;
 
+    @FindBy(css = ".cart-content > .cart-content-btn a")
+    WebElement proceedToCheckoutBtn;
+
     @FindBy(css = "#_desktop_cart .cart-products-count")
     WebElement quantityOfCart;
 
@@ -114,9 +117,9 @@ public class ProductPage extends BasePage {
         return false;
     }
 
-    public ProductPage getRandomQuantityOfProducts(){
-        int min = 1;
-        int max = 5;
+    public ProductPage getRandomQuantityOfProducts(int min, int max){
+//        int min = 1;
+//        int max = 5;
         int quantity = rnd.nextInt(max - min + 1) + min;
         String quantityString = Integer.toString(quantity);
         sendKeysToElement(quantityInput, quantityString);
@@ -181,6 +184,15 @@ public class ProductPage extends BasePage {
     public ProductPage continueShopping(){
         clickOnElement(continueShoppingBtn);
         return this;
+    }
+
+    public ProductPage proceedToCheckout(){
+        clickOnElement(proceedToCheckoutBtn);
+        return this;
+    }
+
+    public String getCartQuantity(){
+        return quantityOfCart.getText();
     }
 
     public String checkIfUpdatedCartQuantity(){

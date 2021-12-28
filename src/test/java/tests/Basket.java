@@ -2,19 +2,13 @@ package tests;
 
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
-import pages.BasketPage;
-import pages.MainPage;
-import pages.ProductGridPage;
-import pages.ProductPage;
 import testBase.Pages;
-import testBase.TestBase;
 
 public class Basket extends Pages {
 
     @Test
     public void addProductsToBasket() {
-
-        for(int i = 0; i < 5; i++) {
+        for (int i = 0; i < 5; i++) {
             mainPage.goToRandomCategory();
 
             productGridPage.goToRandomProduct();
@@ -24,8 +18,9 @@ public class Basket extends Pages {
         }
 
         mainPage.goToBasket();
+        basketPage.printTotalPrice();
 
-        basketPage.areProductsDisplayedInBasket();
         Assert.assertTrue(basketPage.areProductsDisplayedInBasket());
+        Assert.assertTrue(basketPage.isTotalPriceCorrect());
     }
 }

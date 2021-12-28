@@ -11,6 +11,9 @@ public class Pages extends TestBase {
     public BasketPage basketPage;
     public FiltersPage filterPage;
     public OnSalePage onSalePage;
+    public LoginPage loginPage;
+    public RegisterPage registerPage;
+    public CheckoutPage checkoutPage;
 
     @BeforeEach
     public void setUpPages() {
@@ -21,5 +24,8 @@ public class Pages extends TestBase {
         basketPage = new BasketPage(webDriver);
         filterPage = new FiltersPage(webDriver);
         onSalePage = new OnSalePage(webDriver);
+        registerPage = new RegisterPage(webDriver);
+        loginPage = new LoginPage(webDriver);
+        checkoutPage = new CheckoutPage(webDriver);
     }
 }

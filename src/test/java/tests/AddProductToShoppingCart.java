@@ -15,7 +15,7 @@ public class AddProductToShoppingCart extends Pages {
             mainPage.goToRandomCategory();
 
             productGridPage.goToRandomProduct();
-            productPage.getRandomQuantityOfProducts();
+            productPage.getRandomQuantityOfProducts(1, 5);
             productPage.addToCart();
 
             String productName = productPage.getProductName();
