@@ -23,6 +23,7 @@
         <jUnitDataProvider.version>1.13.1</jUnitDataProvider.version>
         <jackson-dataformat-yaml.version>2.13.0</jackson-dataformat-yaml.version>
         <jackson-databind.version>2.13.0</jackson-databind.version>
+        <assertj-core.version>3.4.1</assertj-core.version>
     </properties>
 
     <dependencies>
@@ -120,6 +121,13 @@
             <artifactId>webdrivermanager</artifactId>
             <version>4.4.1</version>
             <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${assertj-core.version}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

@@ -14,6 +14,10 @@ public class Pages extends TestBase {
     public LoginPage loginPage;
     public RegisterPage registerPage;
     public CheckoutPage checkoutPage;
+    public ConfirmOrderPage confirmOrderPage;
+    public YourAccountPage yourAccountPage;
+    public OrderHistoryPage orderHistoryPage;
+    public OrderDetailsPage orderDetailsPage;
 
     @BeforeEach
     public void setUpPages() {
@@ -27,5 +31,9 @@ public class Pages extends TestBase {
         registerPage = new RegisterPage(webDriver);
         loginPage = new LoginPage(webDriver);
         checkoutPage = new CheckoutPage(webDriver);
+        confirmOrderPage = new ConfirmOrderPage(webDriver);
+        yourAccountPage = new YourAccountPage(webDriver);
+        orderHistoryPage = new OrderHistoryPage(webDriver);
+        orderDetailsPage = new OrderDetailsPage(webDriver);
     }
 }

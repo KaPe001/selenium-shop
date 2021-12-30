@@ -63,7 +63,6 @@ public class ProductGridPage extends BasePage {
                 return true;
             }
         }
-
         return false;
     }
 

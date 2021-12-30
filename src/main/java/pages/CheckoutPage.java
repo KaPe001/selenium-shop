@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
+import static java.lang.Thread.sleep;
+
 public class CheckoutPage extends BasePage {
 
     @FindBy(css = ".form-fields div [name='address1']")
@@ -25,6 +27,9 @@ public class CheckoutPage extends BasePage {
     @FindBy(css = ".delivery-options-list button")
     WebElement continueShippingMethod;
 
+    @FindBy(css = "#checkout-payment-step .step-title")
+    WebElement paymentTitle;
+
     @FindBy(css = ".payment-options #payment-option-2-container input")
     WebElement payByBankBtn;
 
@@ -39,16 +44,19 @@ public class CheckoutPage extends BasePage {
     }
 
     public CheckoutPage fillInAddress(String address){
+        waitUntil(addressInput);
         sendKeysToElement(addressInput, address);
         return this;
     }
 
     public CheckoutPage fillInCityInput(String city){
+        waitUntil(cityInput);
         sendKeysToElement(cityInput, city);
         return this;
     }
 
     public CheckoutPage fillInZipCodeInput(String zipCode){
+        waitUntil(zipCodeInput);
         sendKeysToElement(zipCodeInput, zipCode);
         return this;
     }
@@ -59,23 +67,26 @@ public class CheckoutPage extends BasePage {
     }
 
     public CheckoutPage continueCheckout(){
+        waitUntil(continueBtn);
         clickOnElement(continueBtn);
         return this;
     }
 
     public CheckoutPage continueOnShippingMethod(){
+        waitUntil(continueShippingMethod);
         clickOnElement(continueShippingMethod);
         return this;
     }
 
-    public CheckoutPage payByBankWire(){
-        waitUntil(payByBankBtn);
-        clickOnElement(payByBankBtn);
+    public CheckoutPage payByBankWire() throws InterruptedException {
+        if(paymentTitle.isDisplayed()) {
+            clickRadioButton(payByBankBtn);
+        }
         return this;
     }
 
     public CheckoutPage conditionToApprove(){
-        clickOnElement(conditionBtn);
+        clickRadioButton(conditionBtn);
         return this;
     }
 

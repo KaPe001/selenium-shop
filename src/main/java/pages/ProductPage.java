@@ -118,16 +118,13 @@ public class ProductPage extends BasePage {
     }
 
     public ProductPage getRandomQuantityOfProducts(int min, int max){
-//        int min = 1;
-//        int max = 5;
         int quantity = rnd.nextInt(max - min + 1) + min;
         String quantityString = Integer.toString(quantity);
         sendKeysToElement(quantityInput, quantityString);
         return this;
     }
 
-    public ProductPage addToCart(){
-        BasketClass basketClass = new BasketClass();
+    public ProductPage addToCart(BasketClass basketClass){
         if(isCustomizeCardDisplayed()) {
             clickOnElement(sendMessage);
             sendKeysToElement(sendMessage, "hi!");
@@ -137,6 +134,17 @@ public class ProductPage extends BasePage {
         basketClass.addProductToCart(new Product(getProductName(), getPriceAfterDiscountBigDecimal()), 1);
         return this;
     }
+    public ProductPage addToCart(){
+        if(isCustomizeCardDisplayed()) {
+            clickOnElement(sendMessage);
+            sendKeysToElement(sendMessage, "hi!");
+            clickOnElement(saveCustomization);
+        }
+        waitUntil(addToCartBtn);
+        clickOnElement(addToCartBtn);
+        return this;
+    }
+
 
     public String getProductCount(){
         return productCountInPopUp.getText();

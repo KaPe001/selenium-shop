@@ -9,7 +9,7 @@ import static org.hamcrest.core.IsEqual.equalTo;
 public class FiltersTest extends Pages {
 
     @Test
-    public void checkFilters() throws InterruptedException {
+    public void checkFilters() {
 
         mainPage.goToArtCategory();
 
