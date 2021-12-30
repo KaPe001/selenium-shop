@@ -1,11 +1,12 @@
 package configuration;
 
-import configuration.browserTask.Browser;
+import configuration.browserModels.Environment;
+import configuration.browserTask.Browsers;
+import lombok.Data;
 
+@Data
 public class ConfigModel {
-    private Browser browser;
+    private Environment environment;
+    private Browsers browsers;
 
-    public Browser getBrowser() {
-        return browser;
-    }
 }

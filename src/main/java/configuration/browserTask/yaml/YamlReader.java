@@ -1,4 +1,4 @@
-package configuration.yaml;
+package configuration.browserTask.yaml;
 
 import configuration.ConfigModel;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -10,7 +10,7 @@ public class YamlReader {
 
     private ConfigModel configModel;
 
-    public ConfigModel getConfigModel(){
+    public ConfigModel getConfig(){
         return configModel;
     }
 

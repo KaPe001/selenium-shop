@@ -1,14 +1,13 @@
-package configuration;
+package configuration.browserModels;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
-import lombok.Data;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@Data
-public class BrowserModel {
+public class EnvironmentModel {
+
     private boolean active;
     Map<String,Object> properties = new HashMap<>();
 

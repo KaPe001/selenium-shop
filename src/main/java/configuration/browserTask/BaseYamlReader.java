@@ -1,37 +1,10 @@
 package configuration.browserTask;
 
-import configuration.BrowserModel;
-import configuration.yaml.YamlReader;
-
 public class BaseYamlReader {
-    private YamlReader yamlReader;
-    //    List<BrowserModel> browsersList;
-    Browsers browsers;
 
-
-    public String setCurrentBrowser() {
+    public String setCurrentBrowserUrl() {
         String url = null;
-        url = getActiveObject().getUrl();
+        url = System.getProperty("url");
         return url;
     }
-
-    public BrowserModel getActiveObject() {
-        BrowserModel be = null;
-        yamlReader = new YamlReader();
-//        browsersList = yamlReader.getConfigModel().getBrowser().getListOfBrowsers();
-
-        browsers.getChrome().getTheBrowserAndFindUrl().getUrl();
-        browsers.getFirefox().getTheBrowserAndFindUrl().getUrl();
-        browsers.getIe().getTheBrowserAndFindUrl().getUrl();
-        browsers.getEdge().getTheBrowserAndFindUrl().getUrl();
-
-//        for(BrowserModel singleBrowser : browsersList){
-//            if(singleBrowser.isActive()){
-//                be = singleBrowser;
-//                break;
-//            }
-//        }
-        return be;
-    }
-
 }

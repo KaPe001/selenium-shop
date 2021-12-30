@@ -1,9 +1,3 @@
-browser:
-  chrome: CHROME
-  firefox: FIREFOX
-  ie: IE
-  edge: EDGE
-
 environment:
   demo:
     url: http://kotuszkowo.pl

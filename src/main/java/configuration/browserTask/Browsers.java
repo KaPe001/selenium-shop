@@ -1,24 +1,41 @@
 package configuration.browserTask;
 
-public class Browsers {
-    Browser chrome;
-    Browser firefox;
-    Browser ie;
-    Browser edge;
+import configuration.BrowserModel;
 
-    public Browser getChrome() {
+import java.util.Objects;
+
+public class Browsers {
+    BrowserModel chrome;
+    BrowserModel firefox;
+    BrowserModel ie;
+    BrowserModel edge;
+    Browser browser;
+
+    public BrowserModel getChrome() {
         return chrome;
     }
 
-    public Browser getFirefox() {
+    public BrowserModel getFirefox() {
         return firefox;
     }
 
-    public Browser getIe() {
+    public BrowserModel getIe() {
         return ie;
     }
 
-    public Browser getEdge() {
+    public BrowserModel getEdge() {
         return edge;
+    }
+    public Browser getBrowser(){
+        Browser activeBrowser = null;
+        if(Objects.equals(System.getProperty("active"), "true")){
+            activeBrowser = browser;
+        }
+//        List<BrowserModel> browsers = new ArrayList<>();
+//        browsers.add(getChrome());
+//        browsers.add(getFirefox());
+//        browsers.add(getIe());
+//        browsers.add(getEdge());
+        return activeBrowser;
     }
 }
