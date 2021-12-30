@@ -62,4 +62,8 @@ public class BasePage {
     public void logMessage(String text) {
         logger.info(text);
     }
+
+    public static String removeCurrency(String string){
+        return string.replace("zł","");
+    }
 }

@@ -4,8 +4,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.DefaultElementLocatorFactory;
+import pages.darekTask.BasePage;
 
-public class BasketProductPage {
+import static pages.BasePage.removeCurrency;
+
+public class BasketProductPage extends BasePage {
     public BasketProductPage(WebElement product) {
         PageFactory.initElements(new DefaultElementLocatorFactory(product), this);
     }
@@ -21,6 +24,6 @@ public class BasketProductPage {
     }
 
     public String getProductTotalPrice(){
-        return productTotalPrice.getText().replace("zł","");
+        return removeCurrency(productTotalPrice.getText());
     }
 }

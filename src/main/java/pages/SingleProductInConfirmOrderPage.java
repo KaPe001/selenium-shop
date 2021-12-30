@@ -4,8 +4,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.DefaultElementLocatorFactory;
+import pages.darekTask.BasePage;
 
-public class SingleProductInConfirmOrderPage {
+import static pages.BasePage.removeCurrency;
+
+public class SingleProductInConfirmOrderPage extends BasePage {
     public SingleProductInConfirmOrderPage(WebElement product){
         PageFactory.initElements(new DefaultElementLocatorFactory(product), this);
     }
@@ -24,11 +27,11 @@ public class SingleProductInConfirmOrderPage {
     }
 
     public String getProductUnitPrice(){
-        return unitPrice.getText().replace("zł", "");
+        return removeCurrency(unitPrice.getText());
     }
 
     public String getProductTotalPrice(){
-        return totalProductsPrice.getText().replace("zł", "");
+        return removeCurrency(totalProductsPrice.getText());
     }
 
 }

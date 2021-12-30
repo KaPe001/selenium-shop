@@ -9,8 +9,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.List;
 
-import static java.lang.Thread.sleep;
-
 public class CategoryPage extends BasePage {
     ProductGridPage productGridPage = new ProductGridPage(webDriver);
     FiltersPage filtersPage = new FiltersPage(webDriver);

@@ -78,7 +78,7 @@ public class ProductPage extends BasePage {
     }
 
     public BigDecimal getPriceAfterDiscountBigDecimal(){
-        String priceAfterDiscountReplace = priceAfterDiscount.getText().replace("zł", "");
+        String priceAfterDiscountReplace = removeCurrency(priceAfterDiscount.getText());
         return new BigDecimal(priceAfterDiscountReplace);
     }
 
@@ -104,8 +104,8 @@ public class ProductPage extends BasePage {
     }
 
     public boolean isPriceAfterDiscountCorrect(String regularPriceString, String priceAfterDiscountString){
-        regularPriceString = regularPriceString.replace("zł", " ");
-        priceAfterDiscountString = priceAfterDiscountString.replace("zł", " ");
+        regularPriceString = removeCurrency(regularPriceString);
+        priceAfterDiscountString = removeCurrency(priceAfterDiscountString);
 
         double regularPrice = Double.parseDouble(regularPriceString);
         double priceAfterDiscount = Double.parseDouble(priceAfterDiscountString);
@@ -170,14 +170,14 @@ public class ProductPage extends BasePage {
 
     public String getSubtotalValueConvert(){
         String totalPriceString = totalPrice.getText();
-        totalPriceString = totalPriceString.replace("zł","");
+        totalPriceString = removeCurrency(totalPriceString);
         return totalPriceString;
     }
 
     public String checkIfTotalProductPriceIsCorrect(){
         String productPrice = productPriceInPopUp.getText();
         String quantity = productQuantityInPopUp.getText();
-        productPrice = productPrice.replace("zł","");
+        productPrice = removeCurrency(productPrice);
         quantity = quantity.replace("Quantity: ","");
         getSubtotalValueConvert();
 

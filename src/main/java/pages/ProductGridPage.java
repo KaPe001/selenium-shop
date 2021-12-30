@@ -87,10 +87,10 @@ public class ProductGridPage extends BasePage {
     public boolean calculateIfDiscountIsCorrect() {
         for (SingleProductGridPage singleProductGridPage : createListOfProducts()) {
             String regularPriceString = singleProductGridPage.getRegularPrice();
-            regularPriceString = regularPriceString.replace("zł", " ");
+            regularPriceString = removeCurrency(regularPriceString);
 
             String priceAfterDiscountString = singleProductGridPage.getPriceAfterDiscount();
-            priceAfterDiscountString = priceAfterDiscountString.replace("zł", " ");
+            priceAfterDiscountString = removeCurrency(priceAfterDiscountString);
 
             double regularPrice = Double.parseDouble(regularPriceString);
             double priceAfterDiscount = Double.parseDouble(priceAfterDiscountString);

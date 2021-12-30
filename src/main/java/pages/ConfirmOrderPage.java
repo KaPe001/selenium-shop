@@ -73,7 +73,7 @@ public class ConfirmOrderPage extends BasePage {
     }
 
     public String totalAmountToPay(){
-        return totalAmountToPay.getText().replace("zł", "");
+        return removeCurrency(totalAmountToPay.getText());
     }
 
     public String shippingMethod(){
