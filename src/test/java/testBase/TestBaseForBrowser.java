@@ -9,8 +9,6 @@ import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
-
 public class TestBaseForBrowser {
     private static final Logger logger = LoggerFactory.getLogger(TestBase.class);
     public static WebDriver driver;
@@ -18,7 +16,7 @@ public class TestBaseForBrowser {
     public static DriverFactory driverFactory;
 
     @BeforeAll
-    static void setUp() throws IOException {
+    static void setUp() {
         browserProperties = new BrowserProperties();
         logger.info("WebDriver initialized");
     }
