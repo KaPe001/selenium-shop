@@ -2,8 +2,6 @@ package pages;
 
 import com.github.javafaker.service.FakeValuesService;
 import com.github.javafaker.service.RandomService;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -64,6 +62,6 @@ public class BasePage {
     }
 
     public static String removeCurrency(String string){
-        return string.replace("zł","");
+        return string.replace("$","");
     }
 }
