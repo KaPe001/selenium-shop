@@ -3,7 +3,6 @@ package pages.darekTask;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import pages.BasePage;
 
 public class YourAccountPage extends BasePage {
 
@@ -15,7 +14,8 @@ public class YourAccountPage extends BasePage {
     }
 
     public YourAccountPage goToHistoryAndDetails(){
-        clickOnElement(historyBtn);
+        historyBtn.click();
+//        clickOnElement(historyBtn);
         return this;
     }
 }

@@ -33,26 +33,28 @@ public class ProductPage extends BasePage {
 
     public ProductPage addToCart(){
         if(isCustomizeCardDisplayed()) {
-            clickOnElement(sendMessage);
-            sendKeysToElement(sendMessage, "hi!");
-            clickOnElement(saveCustomization);
+            sendMessage.click();
+            sendMessage.sendKeys("hi!");
+            saveCustomization.click();
+//            clickOnElement(sendMessage);
+//            sendKeysToElement(sendMessage, "hi!");
+//            clickOnElement(saveCustomization);
         }
-        waitUntil(productName);
-//        clickOnElement(addToCartBtn);
-        clickRadioButton(addToCartBtn);
+        retryOnStaleElement(addToCartBtn);
         return this;
     }
 
     public ProductPage proceedToCheckout(){
-        if(!popUpTitle.isDisplayed()) {
-            waitUntil(popUpTitle);
-        }
-        clickOnElement(proceedToCheckoutBtn);
+//        waitUntil(popUpTitle);
+//        proceedToCheckoutBtn.click();
+        retryOnStaleElement(proceedToCheckoutBtn);
+//        clickOnElement(proceedToCheckoutBtn);
         return this;
     }
 
     public ProductPage getQuantity(String quantity){
-        sendKeysToElement(quantityInput, quantity);
+        quantityInput.sendKeys(quantity);
+//        sendKeysToElement(quantityInput, quantity);
         return this;
     }
 

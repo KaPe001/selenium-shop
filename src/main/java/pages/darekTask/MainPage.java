@@ -17,10 +17,12 @@ public class MainPage extends BasePage {
     }
 
     public void goToLoginPage() {
-        clickOnElement(logInBtn);
+        logInBtn.click();
+//        clickOnElement(logInBtn);
     }
 
     public void goToArtCategory() {
-        clickOnElement(art);
+        art.click();
+//        clickOnElement(art);
     }
 }

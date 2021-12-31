@@ -28,7 +28,8 @@ public class ProductGridPage extends BasePage {
     }
 
     public ProductGridPage goToProduct() {
-        clickOnElement(singleProduct);
+        singleProduct.click();
+//        clickOnElement(singleProduct);
         return this;
     }
 }

@@ -85,7 +85,8 @@ public class ConfirmOrderPage extends BasePage {
     }
 
     public ConfirmOrderPage goToYourAccount(){
-        clickOnElement(accountBtn);
+        accountBtn.click();
+//        clickOnElement(accountBtn);
         return this;
     }
 }

@@ -34,7 +34,7 @@ public class TestBaseForDarekTask {
         driver.register(webListener);
         driver.get("http://146.59.32.4/index.php");
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
         logger.info("Browser opened correctly");
     }
 

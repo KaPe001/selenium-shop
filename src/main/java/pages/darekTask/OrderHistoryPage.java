@@ -98,8 +98,9 @@ public class OrderHistoryPage extends BasePage {
     public OrderHistoryPage goToOrderDetails(){
         List<RowWithOrdersPage> getList = createNewOrdersList();
         for(RowWithOrdersPage rowWithOrdersPage : getList){
-            waitUntil(rowWithOrdersPage.orderDetails);
-            clickOnElement(rowWithOrdersPage.orderDetails);
+//            waitUntil(rowWithOrdersPage.orderDetails);
+            rowWithOrdersPage.orderDetails.click();
+//            clickRadioButton(rowWithOrdersPage.orderDetails);
         }
         return this;
     }

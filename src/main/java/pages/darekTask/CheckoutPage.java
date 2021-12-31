@@ -48,20 +48,23 @@ public class CheckoutPage extends BasePage {
     }
 
     public CheckoutPage fillInAddress(String address){
-        waitUntil(addressInput);
-        sendKeysToElement(addressInput, address);
+        addressInput.sendKeys(address);
+//        waitUntil(addressInput);
+//        sendKeysToElement(addressInput, address);
         return this;
     }
 
     public CheckoutPage fillInCityInput(String city){
-        waitUntil(cityInput);
-        sendKeysToElement(cityInput, city);
+        cityInput.sendKeys(city);
+//        waitUntil(cityInput);
+//        sendKeysToElement(cityInput, city);
         return this;
     }
 
     public CheckoutPage fillInZipCodeInput(String zipCode){
-        waitUntil(zipCodeInput);
-        sendKeysToElement(zipCodeInput, zipCode);
+        zipCodeInput.sendKeys(zipCode);
+//        waitUntil(zipCodeInput);
+//        sendKeysToElement(zipCodeInput, zipCode);
         return this;
     }
 
@@ -71,10 +74,7 @@ public class CheckoutPage extends BasePage {
     }
 
     public CheckoutPage continueCheckout(){
-//        waitUntil(continueBtn);
         retryOnStaleElement(continueBtn);
-//        clickRadioButton(continueBtn);
-//        clickOnElement(continueBtn);
         return this;
     }
 
@@ -91,28 +91,23 @@ public class CheckoutPage extends BasePage {
 //    }
 
     public CheckoutPage agreeOnTerms(){
-        clickRadioButton(termsAndConditions);
+//        clickRadioButton(termsAndConditions);
+        termsAndConditions.click();
         return this;
     }
 
     public CheckoutPage payByBankWire() {
         retryOnStaleElement(payByBankBtn);
-//        if(paymentTitle.isDisplayed()) {
-//            clickRadioButton(payByBankBtn);
-//        }
         return this;
     }
 
     public CheckoutPage conditionToApprove(){
         retryOnStaleElement(conditionBtn);
-//        clickRadioButton(conditionBtn);
         return this;
     }
 
     public CheckoutPage placeOrder(){
-//        clickRadioButton(placeOrderBtn);
         retryOnStaleElement(placeOrderBtn);
-//        clickOnElement(placeOrderBtn);
         return this;
     }
 }

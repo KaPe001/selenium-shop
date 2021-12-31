@@ -1,7 +1,5 @@
 package pages.darekTask;
 
-import configuration.basket.BasketClass;
-import configuration.basket.Product;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -30,7 +28,9 @@ public class BasketPage extends BasePage {
     }
 
     public BasketPage proceedToCheckout(){
-        checkOutBtn.click();
+//        clickOnElement(checkOutBtn);
+        retryOnStaleElement(checkOutBtn);
+//        checkOutBtn.click();
         return this;
     }
 }

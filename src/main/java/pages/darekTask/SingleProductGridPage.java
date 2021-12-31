@@ -4,7 +4,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.DefaultElementLocatorFactory;
-import pages.BasePage;
 
 public class SingleProductGridPage extends BasePage {
     public SingleProductGridPage(WebElement singleProductInGrid) {
