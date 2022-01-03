@@ -33,9 +33,6 @@ public class BasketPage extends BasePage {
     @FindBy(css = ".cart-summary .cart-summary-line .js-subtotal")
     WebElement totalItems;
 
-    @FindBy(css = ".product-line-grid .product-line-grid-right .product-price strong")
-    WebElement singleProductTotalPrice;
-
     @FindBy(css = ".product-line-grid-right a")
     WebElement deleteProduct;
 
@@ -63,19 +60,12 @@ public class BasketPage extends BasePage {
         return false;
     }
 
-    public boolean isTotalPriceCorrect(BasketClass basketClass) {
-        System.out.println(basketClass.getSumOfAllProducts());
-        return basketClass.getSumOfAllProducts().equals(getTotalPriceFromWebSite());
-    }
-
     public BasketPage proceedToCheckout() {
         clickOnElement(checkOutBtn);
         return this;
     }
 
     public BigDecimal getTotalPriceFromWebSite(){
-//        String initialValue = totalItems.getAttribute("value");
-//        waitForElementValue(totalItems, initialValue);
         BigDecimal totalPrice = new BigDecimal(removeCurrency(productTotalPrice.getText()));
         System.out.println(totalPrice);
         return totalPrice;
@@ -125,10 +115,7 @@ public class BasketPage extends BasePage {
         waitForElementValue(totalItems, initialValue);
         basketClass.decreaseQuantityByOne(getSingleProduct(), getProductsQuantity());
         int newValue = oldValue - 1;
-        if (oldValue - 1 == newValue) {
-            return true;
-        }
-        return false;
+        return oldValue - 1 == newValue;
     }
 
     public BasketPage deleteProduct(BasketClass basketClass) {

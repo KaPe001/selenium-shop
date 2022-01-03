@@ -7,6 +7,7 @@ import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.events.WebDriverEventListener;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
@@ -26,7 +27,9 @@ public class BasePage {
     Random rnd = new Random();
     FakeValuesService fakeValuesService = new FakeValuesService(
             new Locale("en-GB"), new RandomService());
-    private Logger logger = LoggerFactory.getLogger(BasePage.class);
+    public Logger logger = LoggerFactory.getLogger(BasePage.class);
+
+    WebDriverEventListener webListener;
 
     public BasePage() {
     }

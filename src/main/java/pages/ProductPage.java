@@ -52,9 +52,6 @@ public class ProductPage extends BasePage {
     @FindBy(css = "#_desktop_cart .cart-products-count")
     WebElement quantityOfCart;
 
-    @FindBy(css = ".product-customization .card")
-    WebElement customizeProductCard;
-
     @FindBy(css = ".product-customization .card li textarea")
     WebElement sendMessage;
 
@@ -83,24 +80,15 @@ public class ProductPage extends BasePage {
     }
 
     public boolean isDiscountLabelDisplayed(){
-        if(discountLabel.isDisplayed()){
-            return true;
-        }
-        return false;
+        return discountLabel.isDisplayed();
     }
 
     public boolean isRegularPriceIsDisplayed(){
-        if(regularPrice.isDisplayed()){
-            return true;
-        }
-        return false;
+        return regularPrice.isDisplayed();
     }
 
     public boolean isPriceAfterDiscountIsDisplayed(){
-        if(priceAfterDiscount.isDisplayed()){
-            return true;
-        }
-        return false;
+        return priceAfterDiscount.isDisplayed();
     }
 
     public boolean isPriceAfterDiscountCorrect(String regularPriceString, String priceAfterDiscountString){
@@ -111,10 +99,7 @@ public class ProductPage extends BasePage {
         double priceAfterDiscount = Double.parseDouble(priceAfterDiscountString);
 
         double actualPrice = regularPrice * 0.80d;
-        if(actualPrice == priceAfterDiscount){
-            return true;
-        }
-        return false;
+        return actualPrice == priceAfterDiscount;
     }
 
     public ProductPage getRandomQuantityOfProducts(int min, int max){
@@ -208,9 +193,6 @@ public class ProductPage extends BasePage {
     }
 
     public boolean isCustomizeCardDisplayed(){
-        if(productName.getText().equals("CUSTOMIZABLE MUG")){
-            return true;
-        }
-        return false;
+        return productName.getText().equals("CUSTOMIZABLE MUG");
     }
 }

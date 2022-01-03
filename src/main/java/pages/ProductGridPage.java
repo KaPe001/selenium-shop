@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductGridPage extends BasePage {
-    String randomResult;
 
     @FindBy(css = ".product")
     List<WebElement> productList;

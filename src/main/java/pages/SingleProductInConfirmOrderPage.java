@@ -6,8 +6,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.DefaultElementLocatorFactory;
 import pages.darekTask.BasePage;
 
-import static pages.BasePage.removeCurrency;
-
 public class SingleProductInConfirmOrderPage extends BasePage {
     public SingleProductInConfirmOrderPage(WebElement product){
         PageFactory.initElements(new DefaultElementLocatorFactory(product), this);
@@ -25,13 +23,4 @@ public class SingleProductInConfirmOrderPage extends BasePage {
     public String getProductName(){
         return productSingleLineName.getText();
     }
-
-    public String getProductUnitPrice(){
-        return removeCurrency(unitPrice.getText());
-    }
-
-    public String getProductTotalPrice(){
-        return removeCurrency(totalProductsPrice.getText());
-    }
-
 }

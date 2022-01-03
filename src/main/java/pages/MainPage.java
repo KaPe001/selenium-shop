@@ -15,9 +15,6 @@ import java.util.List;
 
 public class MainPage extends BasePage {
     ProductGridPage productGridPage = new ProductGridPage(webDriver);
-    Logger logger = LoggerFactory.getLogger(MainPage.class);
-    WebDriverEventListener webListener;
-
 
     @FindBy(css = "[id='header'] [id='_desktop_user_info'] .hidden-sm-down")
     WebElement logInBtn;
@@ -39,9 +36,6 @@ public class MainPage extends BasePage {
 
     @FindBy(css = "#top-menu > .category")
     List<WebElement> categoriesList;
-
-    @FindBy(css = "#top-menu > .category > .sub-menu > .top-menu > .category")
-    List<WebElement> subCategoriesList;
 
     @FindBy(css = "#category-9 > a")
     WebElement art;
