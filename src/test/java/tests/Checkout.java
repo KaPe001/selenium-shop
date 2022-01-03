@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class Checkout extends Pages {
 
     @Test
-    public void checkoutOrder() throws InterruptedException {
+    public void checkoutOrder() {
 
         mainPage.goToLoginPage();
         loginPage.registerUser();
