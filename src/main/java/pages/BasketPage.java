@@ -15,7 +15,7 @@ public class BasketPage extends BasePage {
     @FindBy(css = ".cart-overview li")
     List<WebElement> listOfProductsInBasket;
 
-    @FindBy(css = ".cart-detailed-totals #cart-subtotal-products .value")
+    @FindBy(css = ".cart-detailed-totals  .card-block .cart-total .value")
     WebElement productTotalPrice;
 
     @FindBy(css = ".cart-summary .checkout a")
@@ -54,73 +54,88 @@ public class BasketPage extends BasePage {
     public boolean areProductsDisplayedInBasket(BasketClass basketClass) {
         List<BasketProductPage> newProductsList = createNewProductsList();
         for (BasketProductPage basketProductPage : newProductsList) {
-            for(Product product : basketClass.getBasketProducts().keySet()) {
-                if(product.getName().equals(basketProductPage.getProductName())){
+            for (Product product : basketClass.getBasketProducts().keySet()) {
+                if (product.getName().equals(basketProductPage.getProductName())) {
                     return true;
                 }
             }
         }
-            return false;
+        return false;
     }
 
     public boolean isTotalPriceCorrect(BasketClass basketClass) {
-        return basketClass.getSumOfAllProducts().toString().equals(getTotalPriceFromBasket());
+        System.out.println(basketClass.getSumOfAllProducts());
+        return basketClass.getSumOfAllProducts().equals(getTotalPriceFromWebSite());
     }
 
-    public BasketPage proceedToCheckout(){
+    public BasketPage proceedToCheckout() {
         clickOnElement(checkOutBtn);
         return this;
     }
 
-    public BigDecimal getTotalPriceFromBasket() {
-        BigDecimal totalPrice = new BigDecimal("0.00");
-        for(int i = 0; i <= listOfProductsInBasket.size(); i++){
-            int quantity = listOfProductsInBasket.size();
-            BigDecimal price = new BigDecimal(String.valueOf(getSingleProductPrice().get(i)));
-            totalPrice = price.multiply(BigDecimal.valueOf(quantity));
-            System.out.println(totalPrice);
-        }
+    public BigDecimal getTotalPriceFromWebSite(){
+//        String initialValue = totalItems.getAttribute("value");
+//        waitForElementValue(totalItems, initialValue);
+        BigDecimal totalPrice = new BigDecimal(removeCurrency(productTotalPrice.getText()));
+        System.out.println(totalPrice);
         return totalPrice;
     }
 
-    public List<BasketProductPage> getSingleProductPrice(){
+    public Product getSingleProduct() {
+        Product product = new Product("", BigDecimal.valueOf(0.00));
         List<BasketProductPage> listOfProductsInBasket = createNewProductsList();
-        for(BasketProductPage basketProductPage : listOfProductsInBasket){
-            basketProductPage.getProductTotalPrice();
+        for (BasketProductPage basketProductPage : listOfProductsInBasket) {
+            BigDecimal productPrice = new BigDecimal(basketProductPage.getProductTotalPrice());
+            product = new Product(basketProductPage.getProductName(), productPrice);
         }
-        return listOfProductsInBasket;
+        return product;
     }
 
-    public BasketPage increaseQuantity(String expectedQuantity) {
+    public int getProductsQuantity(){
+        return Integer.parseInt(productQuantity.getAttribute("value"));
+    }
 
-        while (!productQuantity.getAttribute("value").equals(expectedQuantity)){
+    public BasketPage increaseQuantity(String expectedQuantity, BasketClass basketClass) {
+        basketClass.increaseQuantityByExpectedQuantity(getSingleProduct(), getProductsQuantity(), Integer.parseInt(expectedQuantity));
+        String initialValue = totalItems.getText();
+        while (!productQuantity.getAttribute("value").equals(expectedQuantity)) {
             clickOnElement(arrowUpOnQuantity);
+            waitForElementValue(totalItems, initialValue);
         }
         return this;
     }
 
-    public boolean doesArrowUpUpdateQuantity(){
+    public boolean doesArrowUpUpdateQuantity(BasketClass basketClass) {
         int oldValue = Integer.parseInt(productQuantity.getAttribute("value"));
+        String initialValue = totalItems.getText();
         clickOnElement(arrowUpOnQuantity);
+        waitForElementValue(totalItems, initialValue);
         int newValue = Integer.parseInt(productQuantity.getAttribute("value"));
-        if(oldValue < newValue){
+        if (oldValue < newValue) {
             return true;
         }
+        basketClass.increaseQuantityByOne(getSingleProduct(), getProductsQuantity());
         return false;
     }
 
-    public boolean doesArrowDownUpdateQuantity(){
+    public boolean doesArrowDownUpdateQuantity(BasketClass basketClass) {
         int oldValue = Integer.parseInt(productQuantity.getAttribute("value"));
+        String initialValue = totalItems.getText();
         clickOnElement(arrowDownOnQuantity);
+        waitForElementValue(totalItems, initialValue);
+        basketClass.decreaseQuantityByOne(getSingleProduct(), getProductsQuantity());
         int newValue = oldValue - 1;
-        if(oldValue - 1 == newValue){
+        if (oldValue - 1 == newValue) {
             return true;
         }
         return false;
     }
 
-    public BasketPage deleteProductAndCheckTheTotalPrice(){
+    public BasketPage deleteProduct(BasketClass basketClass) {
+        String initialValue = totalItems.getText();
         clickOnElement(deleteProduct);
+        basketClass.decreaseQuantityByOne(getSingleProduct(), getProductsQuantity());
+        waitForElementValue(totalItems, initialValue);
         return this;
     }
 }
