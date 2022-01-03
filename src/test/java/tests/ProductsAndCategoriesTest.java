@@ -17,7 +17,7 @@ public class ProductsAndCategoriesTest extends Pages {
     public void iterateThroughCategories() {
 
         for (int i = 0; i < mainPage.createNewCategoryList().size(); i++) {
-            mainPage.getCategoriesListIndex(i).click(); //create a click method in mainPage
+            mainPage.getCategoriesListIndex(i).click();
 
             String categoryName = categoryPage.getCategoryName();
             assertThat(categoryPage.getCategoryName(), equalTo(categoryName));
