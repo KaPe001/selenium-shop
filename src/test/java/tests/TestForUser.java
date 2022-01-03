@@ -7,11 +7,8 @@ public class TestForUser {
 
     @Test
     public void getUserInfo() {
-
         UserFactory userFactory = new UserFactory();
-
         System.out.println(userFactory.getAlreadyRegisteredUser());
         System.out.println(userFactory.getRandomUser());
-
     }
 }
