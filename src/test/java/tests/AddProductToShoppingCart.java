@@ -1,5 +1,7 @@
 package tests;
 
+import configuration.basket.BasketClass;
+import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.Test;
 import testBase.Pages;
 
@@ -7,16 +9,18 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsEqual.equalTo;
 
 public class AddProductToShoppingCart extends Pages {
+    SoftAssertions softly = new SoftAssertions();
 
     @Test
     public void successfullyAddedProduct() {
 
+        BasketClass basketClass = new BasketClass();
         for (int i = 0; i < 3; i++) {
             mainPage.goToRandomCategory();
 
             productGridPage.goToRandomProduct();
             productPage.getRandomQuantityOfProducts(1, 5);
-//            productPage.addToCart();
+            productPage.addToCart(basketClass);
 
             String productName = productPage.getProductName();
             assertThat(productPage.checkIfCorrectProduct(), equalTo(productName));
@@ -27,9 +31,7 @@ public class AddProductToShoppingCart extends Pages {
             String productCountLabel = productPage.getProductCount();
             assertThat(productPage.checkIfProductCountIsCorrect(), equalTo(productCountLabel));
 
-            productPage.checkIfTotalProductPriceIsCorrect();
-//            assertThat(productPage.checkIfTotalProductPriceIsCorrect(),
-//                    equalTo(productPage.getSubtotalValueConvert())); throws and error bc of the problem with total price
+            softly.assertThat(productPage.getTotalValue()).isEqualTo(basketClass.getSumOfAllProducts());
 
             productPage.continueShopping();
 

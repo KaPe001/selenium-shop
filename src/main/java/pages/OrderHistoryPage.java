@@ -74,7 +74,7 @@ public class OrderHistoryPage extends BasePage {
         for(RowWithOrdersPage rowWithOrdersPage : getList){
             totalPrice = rowWithOrdersPage.getOrderTotalPrice();
         }
-        return totalPrice.replace("zł","");
+        return removeCurrency(totalPrice);
     }
 
     public String isPaymentMethodCorrect(){

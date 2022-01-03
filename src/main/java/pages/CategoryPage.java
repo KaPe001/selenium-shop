@@ -45,12 +45,9 @@ public class CategoryPage extends BasePage {
     }
 
     public String getAmountOfProducts(){
+        String getActiveFilters = activeFiltersLabel.getText();
         if(!activeFiltersLabel.isDisplayed()) {
-            (new WebDriverWait(webDriver, Duration.ofSeconds(15))).until(new ExpectedCondition<Boolean>() {
-                public Boolean apply(WebDriver d) {
-                    return activeFiltersLabel.getText().length() != 0;
-                }
-            });
+            waitForElementValue(activeFiltersLabel, getActiveFilters);
         }
         return filtersPage.amountOfProductsInFilterLabel.getText().replace("()","");
     }

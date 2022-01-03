@@ -31,7 +31,7 @@ public class ProductPage extends BasePage {
     @FindBy(css = ".modal-body .product-name")
     WebElement productNameInPopUp;
 
-    @FindBy(css = ".modal-body .product-quantity")
+    @FindBy(css = ".modal-body .product-quantity strong")
     WebElement productQuantityInPopUp;
 
     @FindBy(css = ".modal-body .cart-products-count")
@@ -153,25 +153,23 @@ public class ProductPage extends BasePage {
         return productCountInPopUp.getText();
     }
 
-    public String getSubtotalValueConvert(){
+    public BigDecimal getTotalValue(){
         String totalPriceString = totalPrice.getText();
         totalPriceString = removeCurrency(totalPriceString);
-        return totalPriceString;
+        return new BigDecimal(totalPriceString);
     }
 
-    public String checkIfTotalProductPriceIsCorrect(){
-        String productPrice = productPriceInPopUp.getText();
+    public BigDecimal checkIfTotalProductPriceIsCorrect(){
+        String productPriceString = productPriceInPopUp.getText();
+        productPriceString = removeCurrency(productPriceString);
+        BigDecimal productPrice = new BigDecimal(productPriceString);
         String quantity = productQuantityInPopUp.getText();
-        productPrice = removeCurrency(productPrice);
+
         quantity = quantity.replace("Quantity: ","");
-        getSubtotalValueConvert();
-
-        double subtotal = Double.parseDouble(productPrice) * Integer.parseInt(quantity);
-        String.format("%.2f", subtotal);
-        String subtotalString = Double.toString(subtotal);
-        subtotalString = subtotalString.replace("<>","");
-
-        return subtotalString;
+//        getTotalValue();
+        System.out.println(quantity);
+        BigDecimal subtotalBD = productPrice.multiply(new BigDecimal(quantity));
+        return subtotalBD;
     }
 
     public ProductPage continueShopping(){
