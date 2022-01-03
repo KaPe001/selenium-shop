@@ -37,9 +37,6 @@ public class ProductPage extends BasePage {
     @FindBy(css = ".modal-body .cart-products-count")
     WebElement productCountInPopUp;
 
-    @FindBy(css = ".modal-body .product-price")
-    WebElement productPriceInPopUp;
-
     @FindBy(css = ".modal-body .subtotal")
     WebElement totalPrice;
 
@@ -119,6 +116,7 @@ public class ProductPage extends BasePage {
         basketClass.addProductToCart(new Product(getProductName(), getPriceAfterDiscountBigDecimal()), 1);
         return this;
     }
+
     public ProductPage addToCart(){
         if(isCustomizeCardDisplayed()) {
             clickOnElement(sendMessage);
@@ -129,7 +127,6 @@ public class ProductPage extends BasePage {
         clickOnElement(addToCartBtn);
         return this;
     }
-
 
     public String getProductCount(){
         return productCountInPopUp.getText();
@@ -159,25 +156,14 @@ public class ProductPage extends BasePage {
         return new BigDecimal(totalPriceString);
     }
 
-    public BigDecimal checkIfTotalProductPriceIsCorrect(){
-        String productPriceString = productPriceInPopUp.getText();
-        productPriceString = removeCurrency(productPriceString);
-        BigDecimal productPrice = new BigDecimal(productPriceString);
-        String quantity = productQuantityInPopUp.getText();
-
-        quantity = quantity.replace("Quantity: ","");
-//        getTotalValue();
-        System.out.println(quantity);
-        BigDecimal subtotalBD = productPrice.multiply(new BigDecimal(quantity));
-        return subtotalBD;
-    }
-
     public ProductPage continueShopping(){
+        waitUntil(productNameInPopUp);
         clickOnElement(continueShoppingBtn);
         return this;
     }
 
     public ProductPage proceedToCheckout(){
+        waitUntil(productNameInPopUp);
         clickOnElement(proceedToCheckoutBtn);
         return this;
     }
