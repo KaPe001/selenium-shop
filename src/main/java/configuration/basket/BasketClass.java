@@ -26,6 +26,18 @@ public class BasketClass {
         basketProducts.merge(product, quantity, Integer::sum);
     }
 
+    public void increaseQuantityByExpectedQuantity(Product product, int quantity, int expectedQuantity){
+        basketProducts.computeIfPresent(product,(k, v) -> quantity + expectedQuantity);
+    }
+
+    public void increaseQuantityByOne(Product product, int quantity){
+        basketProducts.computeIfPresent(product,(k, v) -> quantity + 1);
+    }
+
+    public void decreaseQuantityByOne(Product product, int quantity){
+        basketProducts.computeIfPresent(product,(k, v) -> quantity - 1);
+    }
+
     public void printCart() {
         System.out.println("\nYour cart contains:");
         for (Map.Entry<Product, Integer> productEntry : basketProducts.entrySet()) {

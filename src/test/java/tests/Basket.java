@@ -28,20 +28,20 @@ public class Basket extends Pages {
 
         Assert.assertTrue(basketPage.areProductsDisplayedInBasket(basketClass));
 
-        softly.assertThat(basketPage.isTotalPriceCorrect(basketClass)); //total isn't correct on a page
+        softly.assertThat(basketPage.getTotalPriceFromWebSite()).isEqualTo(basketClass.getSumOfAllProducts());
 
-        basketPage.increaseQuantity("5");
-//        softly.assertThat(basketPage.isTotalPriceCorrect(basketClass)); //total isn't correct on a page
+        basketPage.increaseQuantity("5", basketClass);
+        softly.assertThat(basketPage.getTotalPriceFromWebSite()).isEqualTo(basketClass.getSumOfAllProducts());
 
-        assertTrue(basketPage.doesArrowUpUpdateQuantity());
-        //softly.assertThat(basketPage.isTotalPriceCorrect(basketClass)); //total isn't correct on a page
+        assertTrue(basketPage.doesArrowUpUpdateQuantity(basketClass));
+        softly.assertThat(basketPage.getTotalPriceFromWebSite()).isEqualTo(basketClass.getSumOfAllProducts()); //total isn't correct on a page
 
-        assertTrue(basketPage.doesArrowDownUpdateQuantity());
-        //softly.assertThat(basketPage.isTotalPriceCorrect(basketClass)); //total isn't correct on a page
+        assertTrue(basketPage.doesArrowDownUpdateQuantity(basketClass));
+        softly.assertThat(basketPage.getTotalPriceFromWebSite()).isEqualTo(basketClass.getSumOfAllProducts()); //total isn't correct on a page
 
         for(int i = 0; i < basketClass.getBasketProducts().size(); i++) {
-            basketPage.deleteProductAndCheckTheTotalPrice();
-//            softly.assertThat(basketPage.isTotalPriceCorrect(basketClass));
+            basketPage.deleteProduct(basketClass);
+            softly.assertThat(basketPage.getTotalPriceFromWebSite()).isEqualTo(basketClass.getSumOfAllProducts());
         }
     }
 }

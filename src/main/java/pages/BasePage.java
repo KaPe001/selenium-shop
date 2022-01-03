@@ -2,22 +2,27 @@ package pages;
 
 import com.github.javafaker.service.FakeValuesService;
 import com.github.javafaker.service.RandomService;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.time.Duration;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Random;
 
 public class BasePage {
 
     public WebDriver webDriver;
-    public WebDriverWait wait;
+    public FluentWait<WebDriver> wait;
     Random rnd = new Random();
     FakeValuesService fakeValuesService = new FakeValuesService(
             new Locale("en-GB"), new RandomService());
@@ -29,7 +34,10 @@ public class BasePage {
     public BasePage(WebDriver webDriver) {
         PageFactory.initElements(webDriver, this);
         this.webDriver = webDriver;
-        wait = new WebDriverWait(webDriver, Duration.ofSeconds(15));
+        wait = new FluentWait<WebDriver>(webDriver)
+                .withTimeout(Duration.ofSeconds(30))
+                .pollingEvery(Duration.ofSeconds(1))
+                .ignoring(NoSuchElementException.class);
     }
 
     public void clickOnElement(WebElement element) {
@@ -57,8 +65,27 @@ public class BasePage {
         wait.until(ExpectedConditions.visibilityOf(webElement));
     }
 
+    public void waitForElementValue(WebElement element, String initialValue) {
+        wait.until((ExpectedCondition<Boolean>) webDriver -> !Objects.equals(element.getText(), initialValue));
+    }
+
     public void logMessage(String text) {
         logger.info(text);
+    }
+
+    public boolean retryOnStaleElement(WebElement element){
+        boolean result = false;
+        int attempts = 0;
+        while (attempts < 3) {
+            try {
+                element.getAttribute("value");
+                result = true;
+                break;
+            } catch (StaleElementReferenceException e) {
+            }
+            attempts++;
+        }
+        return result;
     }
 
     public static String removeCurrency(String string){
