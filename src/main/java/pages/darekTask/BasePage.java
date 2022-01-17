@@ -34,10 +34,10 @@ public class BasePage {
 //        wait.until(ExpectedConditions.elementToBeClickable(element));
 //        element.click();
 //    }
-//
-//    public void clickRadioButton(WebElement element){
-//        element.click();
-//    }
+
+    public void clickRadioButton(WebElement element){
+        element.click();
+    }
 
     public boolean retryOnStaleElement(WebElement element){
         boolean result = false;

@@ -1,6 +1,6 @@
 package configuration.browserTask;
 
-import configuration.BrowserModel;
+import configuration.browserTask.browserModels.*;
 
 import java.util.Objects;
 

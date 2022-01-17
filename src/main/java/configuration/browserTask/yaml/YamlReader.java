@@ -1,24 +1,22 @@
 package configuration.browserTask.yaml;
 
-import configuration.ConfigModel;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
+import configuration.browserTask.Environment;
 
 import java.io.File;
 
 public class YamlReader {
+    private Environment environments;
 
-    private ConfigModel configModel;
-
-    public ConfigModel getConfig(){
-        return configModel;
+    public Environment getEnvironments() {
+        return environments;
     }
 
-    public YamlReader(){
-
+    public YamlReader() {
         try{
             ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
-            this.configModel = mapper.readValue(new File("src/main/resources/config-local.yaml"), ConfigModel.class);
+            this.environments = mapper.readValue(new File("src/main/resources/config-local.yaml"), Environment.class);
         } catch (Exception e) {
             e.printStackTrace();
         }

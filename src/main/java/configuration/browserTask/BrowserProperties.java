@@ -1,20 +1,20 @@
 package configuration.browserTask;
-import configuration.browserTask.yaml.*;
+
+import configuration.browserTask.yaml.YamlReader;
 
 public class BrowserProperties {
     YamlReader yamlReader = new YamlReader();
 
-    public BrowserProperties(){
+    public BrowserProperties() {
+    }
 
-    }
-    public Browser getBrowser(){
-        Browser browser = null;
-        try{
-            browser = yamlReader.getConfig().getBrowsers().getBrowser();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return browser;
-        }
-        return browser;
-    }
+//    public String getBrowser(){
+//        Browser browser = null;
+//        try{
+////            browser = yamlReader.getEnvironment().getBrowser();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+////        return browser;
+////    }
 }
