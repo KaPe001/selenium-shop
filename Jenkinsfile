@@ -5,7 +5,7 @@ pipeline {
         stage('Compile') {
             steps {
                 echo 'First build'
-                git branch: '${branch}', url: 'https://github.com/KaPe001/mouseHoverPractice2.git'
+                git branch: '${branch}', url: 'https://github.com/KaPe001/selenium-shop.git'
                 bat 'mvn clean compile'
                 echo 'OK compile'
             }
