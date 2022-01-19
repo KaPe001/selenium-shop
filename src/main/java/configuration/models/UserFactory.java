@@ -7,7 +7,6 @@ import com.github.javafaker.service.RandomService;
 import java.util.Locale;
 
 public class UserFactory {
-
     public User getRandomUser() {
         Faker faker = new Faker();
         FakeValuesService fakeValuesService = new FakeValuesService(

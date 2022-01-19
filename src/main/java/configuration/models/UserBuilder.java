@@ -1,6 +1,6 @@
 package configuration.models;
 
-public class UserBuilder{
+public class UserBuilder {
 
     protected String firstName;
     protected String lastName;
