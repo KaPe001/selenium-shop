@@ -118,8 +118,7 @@ public class MainPage extends BasePage {
 
     public List<WebElement> createNewSubCategoryListDependingOnCategory(int index) {
         WebElement category = getCategoriesListIndex(index);
-        List<WebElement> subCategory = new SingleSubCategoryOnMainPage(category).getSubCategory();
-        return subCategory;
+        return new SingleSubCategoryOnMainPage(category).getSubCategory();
     }
 
     public void goToArtCategory() {
@@ -131,7 +130,7 @@ public class MainPage extends BasePage {
     }
 
     public void goToRandomCategory() {
-        productGridPage.getRandomWebElementFromList(categoriesList).click();
+        clickOnElement(productGridPage.getRandomWebElementFromList(categoriesList));
     }
 
     public void goToBasket(){
