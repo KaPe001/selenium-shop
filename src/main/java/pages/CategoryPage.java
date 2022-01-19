@@ -3,10 +3,7 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
 import java.util.List;
 
 public class CategoryPage extends BasePage {
@@ -16,7 +13,7 @@ public class CategoryPage extends BasePage {
     @FindBy(css = "#js-product-list-header h1")
     WebElement categoryName;
 
-    @FindBy(css = "#js-active-search-filters")
+    @FindBy(css = "#js-active-search-filters .active-filter-title")
     WebElement activeFiltersLabel;
 
     public CategoryPage(WebDriver webDriver) {
@@ -48,6 +45,7 @@ public class CategoryPage extends BasePage {
         String getActiveFilters = activeFiltersLabel.getText();
         if(!activeFiltersLabel.isDisplayed()) {
             waitForElementValue(activeFiltersLabel, getActiveFilters);
+            activeFiltersLabel.getText();
         }
         return filtersPage.amountOfProductsInFilterLabel.getText().replace("()","");
     }
