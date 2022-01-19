@@ -2,7 +2,6 @@ package tests.darekTask;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.RepeatedTest;
-import org.junit.jupiter.api.Test;
 import pages.LoginPage;
 import pages.RegisterPage;
 import pages.darekTask.*;
@@ -18,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CheckOutForDarek extends TestBaseForDarekTask {
 
-    @RepeatedTest(30)
+    @RepeatedTest(1)
 //    @Test
     public void checkoutOrder() {
         MainPage mainPage = new MainPage(webDriver);
@@ -59,7 +58,6 @@ public class CheckOutForDarek extends TestBaseForDarekTask {
                 .fillInCityInput(city)
                 .selectCountry(visibleTextCountry)
                 .continueCheckout()
-//                .continueOnShippingMethod()
                 .payByBankWire()
                 .conditionToApprove()
                 .placeOrder();
@@ -93,8 +91,6 @@ public class CheckOutForDarek extends TestBaseForDarekTask {
         assertTrue(orderHistoryPage.isOrderCorrect());
 
         orderHistoryPage.goToOrderDetails();
-
-//        Assertions.assertThat(orderDetailsPage.getDeliveryAddress().contains(address));
         Assertions.assertThat(orderDetailsPage.getInvoiceAddress().contains(address));
     }
 }
