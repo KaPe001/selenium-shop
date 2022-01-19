@@ -22,17 +22,8 @@ public class CheckoutPage extends BasePage {
     @FindBy(css = ".form-footer button")
     WebElement continueBtn;
 
-//    @FindBy(css = ".delivery-options .custom-radio input")
-//    WebElement shippingOption;
-//
-//    @FindBy(css = ".delivery-options-list button")
-//    WebElement continueShippingMethod;
-
     @FindBy(css = "#conditions-to-approve .custom-checkbox input")
     WebElement termsAndConditions;
-
-    @FindBy(css = "#checkout-payment-step .step-title")
-    WebElement paymentTitle;
 
     @FindBy(css = ".payment-options #payment-option-2-container input")
     WebElement payByBankBtn;
@@ -78,21 +69,9 @@ public class CheckoutPage extends BasePage {
         return this;
     }
 
-//    public CheckoutPage clickShippingOption(){
-//        clickRadioButton(shippingOption);
-//        return this;
-//    }
-
-//    public CheckoutPage continueOnShippingMethod(){
-//        clickRadioButton(shippingOption);
-////        waitUntil(continueShippingMethod);
-//        clickRadioButton(continueShippingMethod);
-//        return this;
-//    }
-
     public CheckoutPage agreeOnTerms(){
-//        clickRadioButton(termsAndConditions);
-        termsAndConditions.click();
+        clickRadioButton(termsAndConditions);
+//        termsAndConditions.click();
         return this;
     }
 
