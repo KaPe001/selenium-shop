@@ -2,7 +2,7 @@ package tests;
 
 import configuration.browserTask.Browser;
 import configuration.browserTask.DriverFactory;
-import configuration.browserTask.yaml.YamlReader;
+import configuration.browserTask.browserModels.YamlReader;
 import org.junit.jupiter.api.Test;
 import testBase.TestBaseForBrowser;
 
@@ -18,6 +18,7 @@ public class TestForBrowser extends TestBaseForBrowser {
         assertTrue(true);
 //        assertThat(driver.getTitle(), equalTo(System.getProperty("title")));
     }
+
 
     @Test
     public void printPropertiesFromYaml() {

@@ -1,15 +1,16 @@
-- environment-type: demo
-url: http://kotuszkowo.pl
-title: Kotuszkowo- blog o kotach
-browser: chrome
-is-active: true
-- environment-type: uat
-url: https://www.filmweb.pl/
-title: Filmweb - filmy takie jak Ty!
-browser: firefox
-is-active: false
-- environment-type: prod
-url: http://logback.qos.ch/
-title: Logback Home
-browser: edge
-is-active: false
+environemnts:
+  - environmentType: DEMO
+    url: http://kotuszkowo.pl
+    title: Kotuszkowo- blog o kotach
+    browser: chrome
+    isActive: true
+  - environmentType: UAT
+    url: https://www.filmweb.pl/
+    title: Filmweb - filmy takie jak Ty!
+    browser: firefox
+    isActive: false
+  - environmentType: PROD
+    url: http://logback.qos.ch/
+    title: Logback Home
+    browser: edge
+    isActive: false

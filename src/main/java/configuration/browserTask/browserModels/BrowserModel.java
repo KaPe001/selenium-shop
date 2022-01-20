@@ -3,7 +3,6 @@ package configuration.browserTask.browserModels;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 
-import configuration.browserTask.Environment;
 import lombok.Data;
 
 import java.util.HashMap;
