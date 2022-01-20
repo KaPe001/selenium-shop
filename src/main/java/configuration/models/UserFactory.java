@@ -3,6 +3,7 @@ package configuration.models;
 import com.github.javafaker.Faker;
 import com.github.javafaker.service.FakeValuesService;
 import com.github.javafaker.service.RandomService;
+import configuration.browserTask.yaml.YamlReader;
 
 import java.util.Locale;
 

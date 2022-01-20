@@ -1,0 +1,9 @@
+users:
+  - name: Ala
+    lastName: Jakaś
+    email: alajakas@gmail.com
+    password: 123456789
+  - name: Mati
+    lastName: Jakiś
+    email: matijakis@gmail.com
+    password: 987654321

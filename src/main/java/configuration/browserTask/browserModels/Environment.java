@@ -1,7 +1,6 @@
 package configuration.browserTask.browserModels;
 
 import configuration.browserTask.Browser;
-import configuration.browserTask.EnvironmentType;
 import lombok.*;
 
 @Data

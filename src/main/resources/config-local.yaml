@@ -3,7 +3,7 @@ environments:
     url: http://kotuszkowo.pl
     title: Kotuszkowo- blog o kotach
     browser: CHROME
-    isActive: false
+    isActive: true
   - environmentType: UAT
     url: https://www.filmweb.pl/
     title: Filmweb - filmy takie jak Ty!
@@ -13,4 +13,4 @@ environments:
     url: http://logback.qos.ch/
     title: Logback Home
     browser: EDGE
-    isActive: true
+    isActive: false

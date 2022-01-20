@@ -1,4 +1,4 @@
-package configuration.browserTask;
+package configuration.browserTask.browserModels;
 
 public enum EnvironmentType {
 
