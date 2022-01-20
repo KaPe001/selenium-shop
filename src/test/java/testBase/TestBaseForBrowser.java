@@ -1,6 +1,6 @@
 package testBase;
 
-import configuration.browserTask.BrowserProperties;
+import configuration.browserTask.ActiveEnvironment;
 import configuration.browserTask.DriverFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -12,12 +12,12 @@ import org.slf4j.LoggerFactory;
 public class TestBaseForBrowser {
     private static final Logger logger = LoggerFactory.getLogger(TestBase.class);
     public static WebDriver driver;
-    public static BrowserProperties browserProperties;
+    public static ActiveEnvironment activeEnvironment;
     public static DriverFactory driverFactory;
 
     @BeforeAll
     static void setUp() {
-        browserProperties = new BrowserProperties();
+        activeEnvironment = new ActiveEnvironment();
         logger.info("WebDriver initialized");
     }
 

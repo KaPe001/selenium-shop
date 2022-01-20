@@ -1,5 +1,6 @@
 package configuration.browserTask.browserModels;
 
+import configuration.browserTask.Browser;
 import configuration.browserTask.EnvironmentType;
 import lombok.*;
 
@@ -14,6 +15,6 @@ public class Environment {
 
     private String url;
     private String title;
-    private String browser;
+    private Browser browser;
     private boolean isActive;
 }

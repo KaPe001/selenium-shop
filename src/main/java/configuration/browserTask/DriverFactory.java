@@ -9,7 +9,7 @@ import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
-public class DriverFactory extends BaseYamlReader {
+public class DriverFactory {
     WebDriver driver;
 
     public WebDriver getDriver(Browser browser) {

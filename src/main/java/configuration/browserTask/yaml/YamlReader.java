@@ -1,5 +1,7 @@
-package configuration.browserTask.browserModels;
+package configuration.browserTask.yaml;
 
+import configuration.browserTask.browserModels.Environment;
+import configuration.browserTask.browserModels.EnvironmentConfig;
 import lombok.Getter;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;

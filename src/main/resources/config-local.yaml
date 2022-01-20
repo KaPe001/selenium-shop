@@ -1,16 +1,16 @@
-environemnts:
+environments:
   - environmentType: DEMO
     url: http://kotuszkowo.pl
     title: Kotuszkowo- blog o kotach
-    browser: chrome
-    isActive: true
+    browser: CHROME
+    isActive: false
   - environmentType: UAT
     url: https://www.filmweb.pl/
     title: Filmweb - filmy takie jak Ty!
-    browser: firefox
+    browser: FIREFOX
     isActive: false
   - environmentType: PROD
     url: http://logback.qos.ch/
     title: Logback Home
-    browser: edge
-    isActive: false
+    browser: EDGE
+    isActive: true
