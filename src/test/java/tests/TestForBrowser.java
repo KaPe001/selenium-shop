@@ -8,11 +8,8 @@ import testBase.TestBaseForBrowser;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsEqual.equalTo;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestForBrowser extends TestBaseForBrowser {
-    YamlReader yr= new YamlReader();
-
 
     @Test
     public void openBrowser() {
@@ -22,12 +19,5 @@ public class TestForBrowser extends TestBaseForBrowser {
         driver.get(ActiveEnvironment.getActiveEnv().getUrl());
 
         assertThat(driver.getTitle(), equalTo(ActiveEnvironment.getActiveEnv().getTitle()));
-    }
-
-
-    @Test
-    public void printPropertiesFromYaml() {
-        System.out.println(yr.getEnvironments().toString());
-        assertTrue(true);
     }
 }
