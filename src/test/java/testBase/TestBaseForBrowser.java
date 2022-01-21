@@ -29,7 +29,7 @@ public class TestBaseForBrowser {
 
     @AfterEach
     void tearDown() {
-//        driver.quit();
+        driver.quit();
         logger.debug("Driver closed");
     }
 }
