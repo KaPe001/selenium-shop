@@ -2,7 +2,6 @@ package tests;
 
 import configuration.browserTask.ActiveEnvironment;
 import configuration.browserTask.DriverFactory;
-import configuration.browserTask.yaml.YamlReader;
 import org.junit.jupiter.api.Test;
 import testBase.TestBaseForBrowser;
 
