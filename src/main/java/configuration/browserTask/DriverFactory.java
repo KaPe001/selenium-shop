@@ -1,6 +1,7 @@
 package configuration.browserTask;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -9,31 +10,41 @@ import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
+@Slf4j
 public class DriverFactory {
-    WebDriver driver;
 
     public WebDriver getDriver(Browser browser) {
         switch (browser) {
             case CHROME:
-                ChromeOptions optionsChrome = new ChromeOptions();
-                WebDriverManager.chromedriver().setup();
-                optionsChrome.addArguments("start-maximized");
-                driver = new ChromeDriver(optionsChrome);
-                break;
+                return getChromeDriver();
             case FIREFOX:
-                FirefoxOptions optionsFirefox = new FirefoxOptions();
-                WebDriverManager.chromedriver().setup();
-                optionsFirefox.addArguments("start-maximized");
-                driver = new FirefoxDriver(optionsFirefox);
-                break;
+                return getFireFoxDriver();
             case EDGE:
-                EdgeOptions edgeOption= new EdgeOptions();
-                WebDriverManager.edgedriver().setup();
-                edgeOption.addArguments("start-maximized");
-                driver = new EdgeDriver(edgeOption);
+                return getEdgeDriver();
             default:
-                WebDriverManager.iedriver().setup();
+                log.info("Wrong driver selected");
         }
-        return this.driver;
+        return null;
+    }
+
+    private WebDriver getEdgeDriver() {
+        EdgeOptions edgeOption= new EdgeOptions();
+        WebDriverManager.edgedriver().setup();
+        edgeOption.addArguments("start-maximized");
+        return new EdgeDriver(edgeOption);
+    }
+
+    private WebDriver getFireFoxDriver() {
+        FirefoxOptions optionsFirefox = new FirefoxOptions();
+        WebDriverManager.chromedriver().setup();
+        optionsFirefox.addArguments("start-maximized");
+        return new FirefoxDriver(optionsFirefox);
+    }
+
+    private WebDriver getChromeDriver() {
+        ChromeOptions optionsChrome = new ChromeOptions();
+        WebDriverManager.chromedriver().setup();
+        optionsChrome.addArguments("start-maximized");
+        return new ChromeDriver(optionsChrome);
     }
 }

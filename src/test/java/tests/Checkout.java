@@ -4,6 +4,7 @@ import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.Test;
 import pages.SingleProductInConfirmOrderPage;
 import testBase.Pages;
+import tests.helpers.CheckoutData;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -37,15 +38,12 @@ public class Checkout extends Pages {
         productPage.proceedToCheckout();
         basketPage.proceedToCheckout();
 
-        String address = "Kwiatowa 15";
-        String zipcode = "12-345";
-        String city = "Rzeszów";
-        String visibleTextCountry = "Poland";
+        CheckoutData checkoutData = new CheckoutData();
 
-        checkoutPage.fillInAddress(address)
-                .fillInZipCodeInput(zipcode)
-                .fillInCityInput(city)
-                .selectCountry(visibleTextCountry)
+        checkoutPage.fillInAddress(checkoutData.getAddress())
+                .fillInZipCodeInput(checkoutData.getZipcode())
+                .fillInCityInput(checkoutData.getCity())
+                .selectCountry(checkoutData.getVisibleTextCountry())
                 .continueCheckout()
                 .continueOnShippingMethod()
                 .payByBankWire()
@@ -82,7 +80,7 @@ public class Checkout extends Pages {
 
         orderHistoryPage.goToOrderDetails();
 
-        assertThat(orderDetailsPage.getDeliveryAddress().contains(address));
-        assertThat(orderDetailsPage.getInvoiceAddress().contains(address));
+        assertThat(orderDetailsPage.getDeliveryAddress().contains(checkoutData.getAddress()));
+        assertThat(orderDetailsPage.getInvoiceAddress().contains(checkoutData.getAddress()));
     }
 }

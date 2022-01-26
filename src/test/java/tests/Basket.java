@@ -13,9 +13,11 @@ public class Basket extends Pages {
     @Test
     public void addProductsToBasket() {
         SoftAssertions softly = new SoftAssertions();
+        int addProducts = 5;
+        String increaseQuantity = "5";
 
         BasketClass basketClass = new BasketClass();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < addProducts; i++) {
             mainPage.goToRandomCategory();
 
             productGridPage.goToRandomProduct();
@@ -30,7 +32,7 @@ public class Basket extends Pages {
 
         softly.assertThat(basketPage.getTotalPriceFromWebSite()).isEqualTo(basketClass.getSumOfAllProducts());
 
-        basketPage.increaseQuantity("5", basketClass);
+        basketPage.increaseQuantity(increaseQuantity, basketClass);
         softly.assertThat(basketPage.getTotalPriceFromWebSite()).isEqualTo(basketClass.getSumOfAllProducts());
 
         assertTrue(basketPage.doesArrowUpUpdateQuantity(basketClass));

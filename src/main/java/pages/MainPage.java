@@ -1,5 +1,6 @@
 package pages;
 
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Coordinates;
@@ -10,6 +11,7 @@ import org.openqa.selenium.support.events.internal.EventFiringMouse;
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 public class MainPage extends BasePage {
     ProductGridPage productGridPage = new ProductGridPage(webDriver);
 
@@ -44,7 +46,7 @@ public class MainPage extends BasePage {
     WebElement basketBtn;
 
     public void mouseHoverOnElementFromList(WebElement element) {
-        logger.info("Mouse hover on an element link from a list ");
+        log.info("Mouse hover on an element link from a list ");
         mouseHover(element);
     }
 
@@ -130,7 +132,7 @@ public class MainPage extends BasePage {
     }
 
     public void goToRandomCategory() {
-        clickOnElement(productGridPage.getRandomWebElementFromList(categoriesList));
+        clickOnElement(productGridPage.getRandomElement(categoriesList));
     }
 
     public void goToBasket(){

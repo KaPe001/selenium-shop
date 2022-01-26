@@ -13,9 +13,10 @@ public class AddProductToShoppingCart extends Pages {
 
     @Test
     public void successfullyAddedProduct() {
-
         BasketClass basketClass = new BasketClass();
-        for (int i = 0; i < 3; i++) {
+        int addProducts = 3;
+
+        for (int i = 0; i < addProducts; i++) {
             mainPage.goToRandomCategory();
 
             productGridPage.goToRandomProduct();

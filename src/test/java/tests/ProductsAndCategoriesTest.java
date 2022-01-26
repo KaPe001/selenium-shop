@@ -1,8 +1,7 @@
 package tests;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import testBase.Pages;
 
 
@@ -10,8 +9,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@Slf4j
 public class ProductsAndCategoriesTest extends Pages {
-    Logger logger = LoggerFactory.getLogger(ProductsAndCategoriesTest.class);
 
     @Test
     public void iterateThroughCategories() {
@@ -21,14 +20,14 @@ public class ProductsAndCategoriesTest extends Pages {
 
             String categoryName = categoryPage.getCategoryName();
             assertThat(categoryPage.getCategoryName(), equalTo(categoryName));
-            logger.info("Category name matches with clicked category");
+            log.info("Category name matches with clicked category");
 
             filterPage.checkIfFilterMenuIsDisplayed();
-            logger.info("Filters are displayed");
+            log.info("Filters are displayed");
 
             String productGridSize = productGridPage.getProductGridSizeLabel();
             assertThat(categoryPage.printHowManyProducts(), equalTo(productGridSize));
-            logger.info("Amount of products in grid match with the label");
+            log.info("Amount of products in grid match with the label");
         }
     }
 
@@ -41,14 +40,14 @@ public class ProductsAndCategoriesTest extends Pages {
 
                 String categoryName = categoryPage.getCategoryName();
                 assertThat(categoryPage.getCategoryName(), equalTo(categoryName));
-                logger.info("Category name matches with clicked category");
+                log.info("Category name matches with clicked category");
 
                 assertTrue(filterPage.checkIfFilterMenuIsDisplayed());
-                logger.info("Filters are displayed");
+                log.info("Filters are displayed");
 
                 String productGridSize = productGridPage.getProductGridSizeLabel();
                 assertThat(categoryPage.printHowManyProducts(), equalTo(productGridSize));
-                logger.info("Amount of products in grid match with the label");
+                log.info("Amount of products in grid match with the label");
             }
         }
     }

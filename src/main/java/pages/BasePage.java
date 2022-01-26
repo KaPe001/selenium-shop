@@ -2,8 +2,8 @@ package pages;
 
 import com.github.javafaker.service.FakeValuesService;
 import com.github.javafaker.service.RandomService;
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -11,14 +11,14 @@ import org.openqa.selenium.support.events.WebDriverEventListener;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.time.Duration;
+import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Random;
 
+@Slf4j
 public class BasePage {
 
     public WebDriver webDriver;
@@ -27,7 +27,6 @@ public class BasePage {
     FakeValuesService fakeValuesService = new FakeValuesService(
             new Locale("en-GB"), new RandomService());
 
-    public Logger logger = LoggerFactory.getLogger(BasePage.class);
     WebDriverEventListener webListener;
 
     public BasePage() {
@@ -42,8 +41,13 @@ public class BasePage {
                 .ignoring(NoSuchElementException.class);
     }
 
+    public <T> T getRandomElement(List<T> list) {
+        return list.get(rnd.nextInt(list.size()));
+    }
+
     public void clickOnElement(WebElement element) {
         wait.until(ExpectedConditions.elementToBeClickable(element));
+        log.info("Perform click on element: {}" , element.getText());
         element.click();
     }
 
@@ -53,6 +57,7 @@ public class BasePage {
 
     public void clickOnElementToSignUserOut(WebElement element) {
         wait.until(ExpectedConditions.visibilityOf(element));
+        log.info("Element {} , to be clicked", element.getText());
         element.click();
     }
 
@@ -60,11 +65,11 @@ public class BasePage {
         wait.until(ExpectedConditions.visibilityOf(element));
         element.clear();
         element.sendKeys(text);
-        logger.info("Send keys performed on element {}, message: {}", element.getAttribute("name"), text);
+        log.info("Send keys performed on element {}, message: {}", element.getAttribute("name"), text);
     }
 
-    public void waitUntil(WebElement webElement) {
-        wait.until(ExpectedConditions.visibilityOf(webElement));
+    public void waitUntil(WebElement element) {
+        wait.until(ExpectedConditions.visibilityOf(element));
     }
 
     public void waitForElementValue(WebElement element, String initialValue) {
@@ -72,23 +77,7 @@ public class BasePage {
     }
 
     public void logMessage(String text) {
-        logger.info(text);
-    }
-
-    public boolean retryOnStaleElement(WebElement element) {
-        boolean result = false;
-        int attempts = 0;
-        while (attempts < 3) {
-            try {
-                element.getAttribute("value");
-                result = true;
-                break;
-            } catch (StaleElementReferenceException e) {
-                e.printStackTrace();
-            }
-            attempts++;
-        }
-        return result;
+        log.info(text);
     }
 
     public static String removeCurrency(String string) {

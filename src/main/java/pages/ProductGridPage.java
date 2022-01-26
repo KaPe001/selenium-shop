@@ -37,22 +37,15 @@ public class ProductGridPage extends BasePage {
         return newProductGridList.size();
     }
 
-    public WebElement getRandomWebElementFromList(List<WebElement> list) {
-        int randomNumber = rnd.nextInt(list.size());
-        return list.get(randomNumber);
-    }
-
     public String getRandomProductName() {
-        String getProductName = "";
         List<SingleProductGridPage> newList = createListOfProducts();
-        for(SingleProductGridPage singleProductGridPage : newList) {
-            getProductName = singleProductGridPage.getProductName();
-        }
-        return getProductName;
+        SingleProductGridPage rnd = getRandomElement(newList);
+
+        return rnd.getProductName();
     }
 
     public ProductGridPage goToRandomProduct() {
-        getRandomWebElementFromList(productList).click();
+        getRandomElement(productList).click();
         return this;
     }
 
@@ -102,7 +95,7 @@ public class ProductGridPage extends BasePage {
     }
 
     public ProductGridPage openOneOfDiscountedProducts() {
-        getRandomWebElementFromList(productList).click();
+        getRandomElement(productList).click();
         return this;
     }
 
