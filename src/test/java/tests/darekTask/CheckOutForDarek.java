@@ -2,8 +2,8 @@ package tests.darekTask;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.RepeatedTest;
-import pages.LoginPage;
-import pages.RegisterPage;
+import pages.loginPage.LoginPage;
+import pages.registerPage.RegisterPage;
 import pages.darekTask.*;
 import testBase.darekTask.TestBaseForDarekTask;
 

@@ -1,8 +1,6 @@
 package tests;
 
-import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.Test;
-import pages.SingleProductInConfirmOrderPage;
 import testBase.Pages;
 import tests.helpers.CheckoutData;
 

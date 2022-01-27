@@ -3,7 +3,7 @@ package pages.darekTask;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import pages.BasePage;
+import pages.basePage.BasePage;
 
 public class OrderDetailsPage extends BasePage {
 

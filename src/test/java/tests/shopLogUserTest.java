@@ -4,9 +4,9 @@ import testBase.TestBase;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.parallel.Execution;
 import org.junit.jupiter.api.parallel.ExecutionMode;
-import pages.LoginPage;
-import pages.MainPage;
-import pages.RegisterPage;
+import pages.loginPage.LoginPage;
+import pages.mainPage.MainPage;
+import pages.registerPage.RegisterPage;
 
 @Execution(ExecutionMode.CONCURRENT)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)

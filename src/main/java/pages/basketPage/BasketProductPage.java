@@ -1,4 +1,4 @@
-package pages;
+package pages.basketPage;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -6,7 +6,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.DefaultElementLocatorFactory;
 import pages.darekTask.BasePage;
 
-import static pages.BasePage.removeCurrency;
+import static pages.basePage.BasePage.removeCurrency;
 
 public class BasketProductPage extends BasePage {
     public BasketProductPage(WebElement product) {

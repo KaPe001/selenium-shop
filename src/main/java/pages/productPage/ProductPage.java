@@ -1,10 +1,11 @@
-package pages;
+package pages.productPage;
 
 import configuration.basket.BasketClass;
 import configuration.basket.Product;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.basePage.BasePage;
 
 import java.math.BigDecimal;
 

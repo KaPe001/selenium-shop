@@ -1,8 +1,9 @@
-package pages;
+package pages.registerPage;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.basePage.BasePage;
 
 public class RegisterPage extends BasePage {
 

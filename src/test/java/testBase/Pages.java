@@ -1,7 +1,20 @@
 package testBase;
 
 import org.junit.jupiter.api.BeforeEach;
-import pages.*;
+import pages.basketPage.BasketPage;
+import pages.categoryPage.CategoryPage;
+import pages.categoryPage.FiltersPage;
+import pages.checkoutPage.CheckoutPage;
+import pages.confirmOrderPage.ConfirmOrderPage;
+import pages.loginPage.LoginPage;
+import pages.mainPage.MainPage;
+import pages.mainPage.ProductGridPage;
+import pages.onSalePage.OnSalePage;
+import pages.productPage.ProductPage;
+import pages.registerPage.RegisterPage;
+import pages.yourAccountPage.YourAccountPage;
+import pages.yourOrderPage.OrderDetailsPage;
+import pages.yourOrderPage.OrderHistoryPage;
 
 public class Pages extends TestBase {
     public MainPage mainPage;

@@ -1,9 +1,10 @@
-package pages;
+package pages.checkoutPage;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
+import pages.basePage.BasePage;
 
 public class CheckoutPage extends BasePage {
 

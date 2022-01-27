@@ -1,4 +1,4 @@
-package pages;
+package pages.basePage;
 
 import com.github.javafaker.service.FakeValuesService;
 import com.github.javafaker.service.RandomService;
@@ -23,11 +23,11 @@ public class BasePage {
 
     public WebDriver webDriver;
     public FluentWait<WebDriver> wait;
-    Random rnd = new Random();
-    FakeValuesService fakeValuesService = new FakeValuesService(
+    protected Random rnd = new Random();
+    protected FakeValuesService fakeValuesService = new FakeValuesService(
             new Locale("en-GB"), new RandomService());
 
-    WebDriverEventListener webListener;
+    protected WebDriverEventListener webListener;
 
     public BasePage() {
     }

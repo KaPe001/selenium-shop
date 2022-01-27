@@ -1,13 +1,14 @@
-package pages;
+package pages.categoryPage;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.basePage.BasePage;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FiltersPage extends BasePage{
+public class FiltersPage extends BasePage {
 
     @FindBy(css = "#search_filters section:last-child li")
     List<WebElement> filtersInCategoryPage;

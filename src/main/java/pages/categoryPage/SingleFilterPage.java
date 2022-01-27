@@ -1,9 +1,10 @@
-package pages;
+package pages.categoryPage;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.DefaultElementLocatorFactory;
+import pages.basePage.BasePage;
 
 public class SingleFilterPage extends BasePage {
     public SingleFilterPage(WebElement singleFilter) {

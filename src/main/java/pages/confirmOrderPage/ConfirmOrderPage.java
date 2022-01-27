@@ -1,8 +1,9 @@
-package pages;
+package pages.confirmOrderPage;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.basePage.BasePage;
 
 import java.util.ArrayList;
 import java.util.List;

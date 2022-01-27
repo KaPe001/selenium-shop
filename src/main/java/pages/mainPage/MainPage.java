@@ -1,4 +1,4 @@
-package pages;
+package pages.mainPage;
 
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
@@ -7,6 +7,8 @@ import org.openqa.selenium.interactions.Coordinates;
 import org.openqa.selenium.interactions.Locatable;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.events.internal.EventFiringMouse;
+import pages.basePage.BasePage;
+import pages.categoryPage.SingleSubCategoryOnMainPage;
 
 import java.util.ArrayList;
 import java.util.List;
